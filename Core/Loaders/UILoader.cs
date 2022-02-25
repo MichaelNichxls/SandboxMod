@@ -13,8 +13,8 @@ namespace SandboxMod.Core.Loaders
     {
         // Dictionary or Tuple
         // And these two fields should probably be relocated somewhere else
-        public static List<UserInterface> UserInterfaces { get; private set; } = new List<UserInterface>();
-        public static List<UISmartState> UIStates { get; private set; } = new List<UISmartState>();
+        public static List<UserInterface> UserInterfaces { get; } = new List<UserInterface>();
+        public static List<UISmartState> UIStates { get; } = new List<UISmartState>();
 
         public float Priority => 1f;
 
@@ -41,8 +41,8 @@ namespace SandboxMod.Core.Loaders
 
         public void Unload()
         {
-            UserInterfaces = null;
-            UIStates = null;
+            UserInterfaces.Clear();
+            UIStates.Clear();
         }
 
         public static void InsertLayer(List<GameInterfaceLayer> layers, UserInterface userInterface, UISmartState state)

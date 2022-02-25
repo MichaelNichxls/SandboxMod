@@ -27,6 +27,7 @@ namespace SandboxMod.Content.Items.Weapons
             item.useAnimation   = item.useTime;
             item.useStyle       = ItemUseStyleID.HoldingOut;
             item.UseSound       = SoundID.Item5;
+            item.autoReuse      = true;
         }
 
         public override void AddRecipes()

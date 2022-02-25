@@ -9,17 +9,16 @@ namespace SandboxMod
 {
     public partial class SandboxMod : Mod
     {
+        // Static?
         private readonly List<ILoadable> _loadCache = new List<ILoadable>();
 
         public static ModHotKey CycleUIHotKey { get; private set; }
 
         public override void Load()
         {
-            CycleUIHotKey = RegisterHotKey("Cycle Through UIs", "T");
-
             foreach (Type type in Code.GetTypes())
             {
-                // is pattern matching
+                // Use 'is' pattern matching
                 if (!type.IsAbstract && type.GetInterfaces().Contains(typeof(ILoadable)))
                     _loadCache.Add((ILoadable)Activator.CreateInstance(type));
             }
@@ -28,6 +27,8 @@ namespace SandboxMod
 
             foreach (ILoadable loadable in _loadCache)
                 loadable.Load();
+
+            CycleUIHotKey = RegisterHotKey("Cycle Through UIs", "T");
         }
 
         public override void Unload()
@@ -35,6 +36,7 @@ namespace SandboxMod
             foreach (ILoadable loadable in _loadCache)
                 loadable.Unload();
 
+            _loadCache.Clear();
             CycleUIHotKey = null;
         }
 
