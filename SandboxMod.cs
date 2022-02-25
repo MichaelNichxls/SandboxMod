@@ -28,6 +28,7 @@ namespace SandboxMod
             foreach (ILoadable loadable in _loadCache)
                 loadable.Load();
 
+            // Move into its own Loader class
             CycleUIHotKey = RegisterHotKey("Cycle Through UIs", "T");
         }
 

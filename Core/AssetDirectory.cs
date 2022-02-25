@@ -7,5 +7,6 @@
         public const string Items           = Textures + nameof(Items) + "/";
         public const string MissingTexture  = Textures + nameof(MissingTexture);
         public const string WeaponTextures  = Items + "Weapons/";
+        public const string ToolTextures    = Items + "Tools/";
     }
 }
