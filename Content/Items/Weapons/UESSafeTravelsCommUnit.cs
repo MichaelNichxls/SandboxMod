@@ -1,6 +1,4 @@
-﻿using SandboxMod.Content.UI;
-using SandboxMod.Core;
-using SandboxMod.Core.Loaders;
+﻿using SandboxMod.Core;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -27,11 +25,11 @@ namespace SandboxMod.Content.Items.Weapons
             item.crit           = 4;
             item.knockBack      = 6; // ?
             item.rare           = ItemRarityID.Red;
-            item.value          = Item.gold * 12;
+            item.value          = Item.sellPrice(gold: 12);
             item.width          = 54;
             item.height         = 42;
             item.useTime        = 20;
-            item.useAnimation   = 20;
+            item.useAnimation   = item.useTime;
             item.useStyle       = ItemUseStyleID.HoldingOut;
             item.UseSound       = new LegacySoundStyle(SoundID.Item, 15);
             item.reuseDelay     = 50; // or so
@@ -44,14 +42,11 @@ namespace SandboxMod.Content.Items.Weapons
 
             recipe.AddIngredient(ItemID.LunarBar, 8);
             recipe.AddIngredient(ItemID.FragmentNebula, 12);
-            recipe.AddIngredient(ItemID.Sapphire, 1);
+            recipe.AddIngredient(ItemID.Sapphire);
             recipe.AddIngredient(ItemID.Wire, 50);
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
-
-        public override bool AltFunctionUse(Player player) =>
-            UILoader.GetUIState<ButtonPanel>().Visible ^= true;
     }
 }
