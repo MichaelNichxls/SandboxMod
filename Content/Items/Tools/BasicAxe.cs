@@ -20,7 +20,7 @@ namespace SandboxMod.Content.Items.Tools
             item.rare           = ItemRarityID.Blue;
             item.value          = Item.sellPrice(silver: 24);
             item.width          = 38;
-            item.height         = 36;
+            item.height         = 34;
             item.useTime        = 17;
             item.useAnimation   = item.useTime;
             item.useStyle       = ItemUseStyleID.SwingThrow;

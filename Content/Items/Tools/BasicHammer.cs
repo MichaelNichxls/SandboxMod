@@ -19,7 +19,7 @@ namespace SandboxMod.Content.Items.Tools
             item.knockBack      = 2.5f;
             item.rare           = ItemRarityID.Blue;
             item.value          = Item.sellPrice(silver: 24);
-            item.width          = 38;
+            item.width          = 36;
             item.height         = 36;
             item.useTime        = 18;
             item.useAnimation   = 28;
