@@ -1,8 +1,8 @@
-﻿using SandboxMod.Core.Loaders;
+﻿using SandboxMod.Common.Loaders;
 using Terraria.GameInput;
 using Terraria.ModLoader;
 
-namespace SandboxMod.Core
+namespace SandboxMod.Common
 {
     public class SandboxPlayer : ModPlayer
     {

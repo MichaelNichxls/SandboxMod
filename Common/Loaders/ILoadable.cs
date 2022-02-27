@@ -1,4 +1,4 @@
-﻿namespace SandboxMod.Core.Loaders
+﻿namespace SandboxMod.Common.Loaders
 {
     internal interface ILoadable
     {

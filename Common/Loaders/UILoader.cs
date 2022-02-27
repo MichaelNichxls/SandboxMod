@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace SandboxMod.Core.Loaders
+namespace SandboxMod.Common.Loaders
 {
     internal class UILoader : ILoadable
     {

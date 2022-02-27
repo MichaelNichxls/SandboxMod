@@ -1,4 +1,4 @@
-﻿using SandboxMod.Core;
+﻿using SandboxMod.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -1,4 +1,4 @@
-﻿namespace SandboxMod.Core
+﻿namespace SandboxMod.Common
 {
     public static class AssetDirectory
     {
@@ -7,6 +7,7 @@
         public const string Items               = Textures + nameof(Items) + "/";
         public const string MissingTexture      = Textures + nameof(MissingTexture);
         public const string AccessoryTextures   = Items + "Accessories/";
+        public const string ArmorTextures       = Items + "Armor/";
         public const string ToolTextures        = Items + "Tools/";
         public const string WeaponTextures      = Items + "Weapons/";
     }

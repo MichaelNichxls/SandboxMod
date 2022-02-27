@@ -1,4 +1,4 @@
-﻿using SandboxMod.Core;
+﻿using SandboxMod.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,10 +10,10 @@ namespace SandboxMod.Content.Items.Accessories
         public override string Texture => AssetDirectory.AccessoryTextures + nameof(BasicAccessory);
 
         public override void SetStaticDefaults() => Tooltip.SetDefault(
-            "4 defense\n"
-                + "+20 max life\n"
-                + "20% increased damage\n"
-                + "A basic accessory");
+            "4 defense"
+                + "\n+20 max life"
+                + "\n16% increased damage"
+                + "\nA basic accessory");
 
         public override void SetDefaults()
         {
@@ -37,9 +37,9 @@ namespace SandboxMod.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statDefense      += 4;
-            player.statLifeMax2     += 20;
-            player.allDamageMult    *= 1.2f;
+            player.statDefense  += 4;
+            player.statLifeMax2 += 20;
+            player.allDamage    += .16f;
         }
     }
 }
