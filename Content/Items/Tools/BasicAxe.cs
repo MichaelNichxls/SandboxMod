@@ -7,7 +7,7 @@ namespace SandboxMod.Content.Items.Tools
 {
     public class BasicAxe : ModItem
     {
-        public override string Texture => AssetDirectory.ToolTextures + nameof(BasicAxe);
+        public override string Texture => AssetDirectory.ToolTextures + Name;
 
         public override void SetStaticDefaults() => Tooltip.SetDefault("A basic axe");
 

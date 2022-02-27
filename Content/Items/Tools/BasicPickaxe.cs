@@ -7,7 +7,7 @@ namespace SandboxMod.Content.Items.Tools
 {
     public class BasicPickaxe : ModItem
     {
-        public override string Texture => AssetDirectory.ToolTextures + nameof(BasicPickaxe);
+        public override string Texture => AssetDirectory.ToolTextures + Name;
 
         public override void SetStaticDefaults() => Tooltip.SetDefault("A basic pickaxe");
 

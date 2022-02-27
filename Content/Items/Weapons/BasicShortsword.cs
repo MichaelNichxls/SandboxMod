@@ -7,7 +7,7 @@ namespace SandboxMod.Content.Items.Weapons
 {
     public class BasicShortsword : ModItem
     {
-        public override string Texture => AssetDirectory.WeaponTextures + nameof(BasicShortsword);
+        public override string Texture => AssetDirectory.WeaponTextures + Name;
 
         public override void SetStaticDefaults() => Tooltip.SetDefault("A basic shortsword");
 

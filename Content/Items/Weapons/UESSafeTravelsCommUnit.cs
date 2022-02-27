@@ -8,7 +8,7 @@ namespace SandboxMod.Content.Items.Weapons
 {
     public class UESSafeTravelsCommUnit : ModItem
     {
-        public override string Texture => AssetDirectory.WeaponTextures + nameof(UESSafeTravelsCommUnit);
+        public override string Texture => AssetDirectory.WeaponTextures + Name;
 
         public override void SetStaticDefaults()
         {

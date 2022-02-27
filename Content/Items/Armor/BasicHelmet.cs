@@ -8,7 +8,7 @@ namespace SandboxMod.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class BasicHelmet : ModItem
     {
-        public override string Texture => AssetDirectory.ArmorTextures + nameof(BasicHelmet);
+        public override string Texture => AssetDirectory.ArmorTextures + Name;
 
         public override void SetStaticDefaults() => Tooltip.SetDefault("A basic helmet");
 
