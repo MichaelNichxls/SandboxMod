@@ -7,7 +7,7 @@ namespace SandboxMod.Content.Items.Tools
 {
     public class BasicHamaxe : ModItem
     {
-        public override string Texture => AssetDirectory.ToolTextures + Name;
+        public override string Texture => AssetDirectory.GetTexture<BasicHamaxe>();
 
         public override void SetStaticDefaults() => Tooltip.SetDefault("A basic hamaxe");
 

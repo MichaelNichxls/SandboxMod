@@ -1,19 +1,16 @@
-﻿namespace SandboxMod.Common
+﻿using System;
+
+namespace SandboxMod.Common
 {
+    // May rename and/or move class
     public static class AssetDirectory
     {
-        public const string Assets          = nameof(SandboxMod) + "/" + nameof(Assets) + "/";
-        public const string Textures        = Assets + nameof(Textures) + "/";
-        public const string MissingTexture  = Textures + nameof(MissingTexture);
+        public static string Get() => nameof(SandboxMod) + "/Assets/";
 
-        public const string Items               = Textures + nameof(Items) + "/";
-        public const string AccessoryTextures   = Items + "Accessories/";
-        public const string AmmoTextures_Item   = Items + "Ammo/";
-        public const string ArmorTextures       = Items + "Armor/";
-        public const string ToolTextures        = Items + "Tools/";
-        public const string WeaponTextures      = Items + "Weapons/";
+        public static string GetTexture(Type type) =>
+            type.GetType().FullName.Replace('.', '/').Replace("Content/", "Assets/Textures/");
 
-        public const string Projectiles             = Textures + nameof(Projectiles) + "/";
-        public const string AmmoTextures_Projectile = Projectiles + "Ammo/";
+        public static string GetTexture<T>() =>
+            typeof(T).FullName.Replace('.', '/').Replace("Content/", "Assets/Textures/");
     }
 }

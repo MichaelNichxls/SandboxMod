@@ -7,7 +7,7 @@ namespace SandboxMod.Content.Items.Tools
 {
     public class BasicHammer : ModItem
     {
-        public override string Texture => AssetDirectory.ToolTextures + Name;
+        public override string Texture => AssetDirectory.GetTexture<BasicHammer>();
 
         public override void SetStaticDefaults() => Tooltip.SetDefault("A basic hammer");
 

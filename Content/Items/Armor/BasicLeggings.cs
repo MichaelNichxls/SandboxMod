@@ -8,7 +8,7 @@ namespace SandboxMod.Content.Items.Armor
     [AutoloadEquip(EquipType.Legs)]
     public class BasicLeggings : ModItem
     {
-        public override string Texture => AssetDirectory.ArmorTextures + Name;
+        public override string Texture => AssetDirectory.GetTexture<BasicLeggings>();
 
         public override void SetStaticDefaults() => Tooltip.SetDefault(
             "20% increased movement speed"

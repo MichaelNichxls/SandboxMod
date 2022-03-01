@@ -7,7 +7,7 @@ namespace SandboxMod.Content.Items.Accessories
 {
     public class BasicAccessory : ModItem
     {
-        public override string Texture => AssetDirectory.AccessoryTextures + Name;
+        public override string Texture => AssetDirectory.GetTexture<BasicAccessory>();
 
         public override void SetStaticDefaults() => Tooltip.SetDefault(
             "4 defense"
@@ -39,7 +39,7 @@ namespace SandboxMod.Content.Items.Accessories
         {
             player.statDefense  += 4;
             player.statLifeMax2 += 20;
-            player.allDamage    += .16f;
+            player.allDamage    += 0.16f;
         }
     }
 }

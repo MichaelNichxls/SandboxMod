@@ -7,7 +7,7 @@ namespace SandboxMod.Content.Projectiles.Ammo
 {
     public class BasicBullet : ModProjectile
     {
-        public override string Texture => AssetDirectory.AmmoTextures_Projectile + Name;
+        public override string Texture => AssetDirectory.GetTexture<BasicBullet>();
 
         public override void SetStaticDefaults()
         {
@@ -17,6 +17,7 @@ namespace SandboxMod.Content.Projectiles.Ammo
 
         public override void SetDefaults()
         {
+            // Add colored light
             projectile.ranged       = true;
             projectile.friendly     = true;
             projectile.penetrate    = 3;

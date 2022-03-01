@@ -8,7 +8,7 @@ namespace SandboxMod.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class BasicHelmet : ModItem
     {
-        public override string Texture => AssetDirectory.ArmorTextures + Name;
+        public override string Texture => AssetDirectory.GetTexture<BasicHelmet>();
 
         public override void SetStaticDefaults() => Tooltip.SetDefault("A basic helmet");
 
@@ -41,7 +41,7 @@ namespace SandboxMod.Content.Items.Armor
             player.setBonus = "12% increased damage"
                 + "\nGrants immunity to On Fire! and Chilled";
 
-            player.allDamage                    += .12f;
+            player.allDamage                    += 0.12f;
             player.buffImmune[BuffID.OnFire]    = true;
             player.buffImmune[BuffID.Chilled]   = true;
         }
