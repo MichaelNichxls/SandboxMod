@@ -31,7 +31,7 @@ namespace SandboxMod.Content.Items.Weapons
         {
             var recipe = new ModRecipe(mod);
 
-            recipe.AddRecipeGroup("IronBar", 8);
+            recipe.AddIngredient(ItemID.PlatinumBar, 6);
             recipe.AddIngredient(ModContent.ItemType<BasicItem>());
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);

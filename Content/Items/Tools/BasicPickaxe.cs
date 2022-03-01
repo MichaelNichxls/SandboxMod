@@ -9,12 +9,14 @@ namespace SandboxMod.Content.Items.Tools
     {
         public override string Texture => AssetDirectory.GetTexture<BasicPickaxe>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault("A basic pickaxe");
+        public override void SetStaticDefaults() => Tooltip.SetDefault(
+            "Able to mine Hellstone"
+                + "\nA basic pickaxe");
 
         public override void SetDefaults()
         {
             item.melee          = true;
-            item.pick           = 60;
+            item.pick           = 70;
             item.damage         = 10;
             item.knockBack      = 1.75f;
             item.rare           = ItemRarityID.Blue;
@@ -34,7 +36,7 @@ namespace SandboxMod.Content.Items.Tools
             var recipe = new ModRecipe(mod);
 
             recipe.AddRecipeGroup("Wood", 3);
-            recipe.AddRecipeGroup("IronBar", 10);
+            recipe.AddIngredient(ItemID.PlatinumBar, 10);
             recipe.AddIngredient(ModContent.ItemType<BasicItem>());
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);

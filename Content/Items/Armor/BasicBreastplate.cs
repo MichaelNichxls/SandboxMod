@@ -14,7 +14,7 @@ namespace SandboxMod.Content.Items.Armor
 
         public override void SetDefaults()
         {
-            item.defense    = 18;
+            item.defense    = 9;
             item.rare       = ItemRarityID.Blue;
             item.value      = Item.sellPrice(silver: 24);
             item.width      = 30;
@@ -25,7 +25,7 @@ namespace SandboxMod.Content.Items.Armor
         {
             var recipe = new ModRecipe(mod);
 
-            recipe.AddRecipeGroup("IronBar", 22);
+            recipe.AddIngredient(ItemID.PlatinumBar, 22);
             recipe.AddIngredient(ModContent.ItemType<BasicItem>());
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);

@@ -14,7 +14,7 @@ namespace SandboxMod.Content.Items.Tools
         public override void SetDefaults()
         {
             item.melee          = true;
-            item.axe            = 13;
+            item.axe            = 16;
             item.damage         = 14;
             item.knockBack      = 3.25f;
             item.rare           = ItemRarityID.Blue;
@@ -33,7 +33,7 @@ namespace SandboxMod.Content.Items.Tools
             var recipe = new ModRecipe(mod);
 
             recipe.AddRecipeGroup("Wood", 3);
-            recipe.AddRecipeGroup("IronBar", 8);
+            recipe.AddIngredient(ItemID.PlatinumBar, 8);
             recipe.AddIngredient(ModContent.ItemType<BasicItem>());
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);

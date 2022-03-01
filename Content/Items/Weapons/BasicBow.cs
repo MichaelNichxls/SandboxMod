@@ -15,7 +15,7 @@ namespace SandboxMod.Content.Items.Weapons
         {
             item.ranged         = true;
             item.noMelee        = true;
-            item.damage         = 12;
+            item.damage         = 16;
             item.useAmmo        = AmmoID.Arrow;
             item.shoot          = ProjectileID.WoodenArrowFriendly;
             item.shootSpeed     = 7.5f;
@@ -34,7 +34,7 @@ namespace SandboxMod.Content.Items.Weapons
         {
             var recipe = new ModRecipe(mod);
 
-            recipe.AddRecipeGroup("IronBar", 7);
+            recipe.AddIngredient(ItemID.PlatinumBar, 7);
             recipe.AddIngredient(ModContent.ItemType<BasicItem>());
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);

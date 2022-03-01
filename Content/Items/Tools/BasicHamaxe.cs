@@ -15,7 +15,7 @@ namespace SandboxMod.Content.Items.Tools
         {
             item.melee          = true;
             item.hammer         = 60;
-            item.axe            = 13;
+            item.axe            = 16;
             item.damage         = 14;
             item.knockBack      = 3.25f;
             item.rare           = ItemRarityID.Blue;
@@ -35,7 +35,7 @@ namespace SandboxMod.Content.Items.Tools
             var recipe = new ModRecipe(mod);
 
             recipe.AddRecipeGroup("Wood", 3);
-            recipe.AddRecipeGroup("IronBar", 14);
+            recipe.AddIngredient(ItemID.PlatinumBar, 14);
             recipe.AddIngredient(ModContent.ItemType<BasicItem>());
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
