@@ -32,7 +32,7 @@ namespace SandboxMod.Content.Items.Tools
         {
             var recipe = new ModRecipe(mod);
 
-            recipe.AddRecipeGroup("Wood", 3);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood, 3);
             recipe.AddIngredient(ItemID.PlatinumBar, 8);
             recipe.AddIngredient(ModContent.ItemType<BasicItem>());
             recipe.AddTile(TileID.Anvils);

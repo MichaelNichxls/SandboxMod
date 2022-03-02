@@ -33,8 +33,7 @@ namespace SandboxMod.Content.Items.Armor
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs) =>
-            body.type == ModContent.ItemType<BasicBreastplate>()
-                && legs.type == ModContent.ItemType<BasicLeggings>();
+            body.type == ModContent.ItemType<BasicBreastplate>() && legs.type == ModContent.ItemType<BasicLeggings>();
 
         public override void UpdateArmorSet(Player player)
         {

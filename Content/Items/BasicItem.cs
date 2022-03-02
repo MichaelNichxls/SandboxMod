@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace SandboxMod.Content.Items
 {
+    // Rename to BasicMaterial?
     public class BasicItem : ModItem
     {
         public override string Texture => AssetDirectory.GetTexture<BasicItem>();
@@ -24,10 +25,9 @@ namespace SandboxMod.Content.Items
         {
             var recipe = new ModRecipe(mod);
 
-            // Make recipe group
             recipe.AddIngredient(ItemID.ShadowScale, 6);
             recipe.AddIngredient(ItemID.Emerald);
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
