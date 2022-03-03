@@ -1,1 +1,2 @@
-This is a sandboxing mod.
+This is a sandboxing mod created with the sole purpose of learning about the tModLoader API, along with Microsoft's XNA Framework. This mod is not serious and is only meant for experimenting.
+Please note that most of this mod's textures are not of my own. This is simply because I don't want to make my own sprites when my main focus is learning the API. Everything else is my own.
