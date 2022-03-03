@@ -9,7 +9,6 @@ namespace SandboxMod.Content.Tiles
 {
     public class MaterialTransmuter : ModTile
     {
-        // Am I doing this right?
         public override bool Autoload(ref string name, ref string texture)
         {
             texture = AssetDirectory.GetTexture<MaterialTransmuter>();
@@ -18,30 +17,30 @@ namespace SandboxMod.Content.Tiles
 
         public override void SetDefaults()
         {
-            Main.tileNoAttach[Type] = true;
-            Main.tileLavaDeath[Type] = true;
-            Main.tileFrameImportant[Type] = true;
-
-            //disableSmartCursor = true;
-            //TileID.Sets.DisableSmartCursor[Type] = true;
-            //TileID.Sets.IgnoredByNpcStepUp[Type] = true; // This line makes NPCs not try to step up this tile during their movement. Only use this for furniture with solid tops.
+            Main.tileFrameImportant[Type]   = true;
+            Main.tileLavaDeath[Type]        = true;
+            Main.tileNoAttach[Type]         = true;
+            Main.tileLighted[Type]          = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18 };
             TileObjectData.addTile(Type);
 
-            //adjTiles = new int[] { ModContent.ItemType<Items.Tiles.MaterialTransmuter>() };
-            dustType = DustID.Wraith;
+            dustType            = DustID.Wraith;
+            disableSmartCursor  = true;
 
             ModTranslation name = CreateMapEntryName();
+
             name.SetDefault("Material Transmuter");
             AddMapEntry(new Color(30, 6, 49), name);
-
-            // Add lights
         }
 
         // Impending helpers galore
-        public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
+        public override void NumDust(int i, int j, bool fail, ref int num) =>
+            num = fail ? 1 : 3;
+
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) =>
+            (r, g, b) = (116f / byte.MaxValue, 30f / byte.MaxValue, 146f / byte.MaxValue);
 
         // Make const for 16, maybe
         public override void KillMultiTile(int i, int j, int frameX, int frameY) =>
