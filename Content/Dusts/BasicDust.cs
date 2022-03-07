@@ -15,7 +15,8 @@ namespace SandboxMod.Content.Dusts
 
         public override void OnSpawn(Dust dust)
         {
-            dust.frame      = new Rectangle(0, Main.rand.Next(3) * 12, 12, 12);
+            // May or may not make a helper for reading custom dust spritesheets
+            dust.frame      = new Rectangle(0, Main.rand.Next(3) * 10, 10, 10);
             dust.noGravity  = true;
             dust.noLight    = true;
             dust.scale      *= 1.5f;
