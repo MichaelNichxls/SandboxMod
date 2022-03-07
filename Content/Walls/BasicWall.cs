@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using SandboxMod.Common;
+using SandboxMod.Content.Dusts;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace SandboxMod.Content.Walls
@@ -16,19 +16,18 @@ namespace SandboxMod.Content.Walls
 
         public override void SetDefaults()
         {
-            // Needs more here
             Main.wallHouse[Type] = true;
 
-            drop = ModContent.ItemType<Items.Walls.BasicWall>();
-            dustType = DustID.Sparkle; // Make custom dust
+            drop        = ModContent.ItemType<Items.Walls.BasicWall>();
+            dustType    = ModContent.DustType<BasicDust>();
 
-            AddMapEntry(new Color(200, 200, 200));
+            AddMapEntry(new Color(255, 255, 255));
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) =>
             num = fail ? 1 : 3;
 
-        //public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) =>
-        //    (r, g, b) = (1f / byte.MaxValue, 152f / byte.MaxValue, 220f / byte.MaxValue);
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) =>
+            (r, g, b) = (255f / byte.MaxValue, 255f / byte.MaxValue, 255f / byte.MaxValue);
     }
 }
