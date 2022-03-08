@@ -1,4 +1,5 @@
 ﻿using SandboxMod.Common;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,6 +15,7 @@ namespace SandboxMod.Content.Items.Tiles
         {
             item.consumable     = true;
             item.createTile     = ModContent.TileType<Content.Tiles.BasicChair>();
+            item.value          = Item.sellPrice(copper: 30);
             item.width          = 16;
             item.height         = 32;
             item.maxStack       = 99;
