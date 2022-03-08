@@ -20,26 +20,25 @@ namespace SandboxMod.Content.Tiles
         {
             // How to disable NPC step-up?
             Main.tileFrameImportant[Type]   = true;
-            Main.tileSolidTop[Type]         = true;
-            Main.tileTable[Type]            = true;
-            Main.tileLavaDeath[Type]        = true;
             Main.tileNoAttach[Type]         = true;
+            Main.tileTable[Type]            = true;
+            Main.tileSolidTop[Type]         = true;
+            Main.tileLavaDeath[Type]        = true;
             Main.tileLighted[Type]          = true;
+
+            dustType            = ModContent.DustType<BasicDust>();
+            adjTiles            = new int[] { TileID.WorkBenches };
+            disableSmartCursor  = true;
+
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
+
+            ModTranslation name = CreateMapEntryName();
+            name.SetDefault("Basic Work Bench");
+            AddMapEntry(new Color(235, 235, 235), name);
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x1);
             TileObjectData.newTile.CoordinateHeights = new int[] { 18 };
             TileObjectData.addTile(Type);
-
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-
-            adjTiles            = new int[] { TileID.WorkBenches };
-            dustType            = ModContent.DustType<BasicDust>();
-            disableSmartCursor  = true;
-
-            ModTranslation name = CreateMapEntryName();
-
-            name.SetDefault("Basic Work Bench");
-            AddMapEntry(new Color(235, 235, 235), name);
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) =>

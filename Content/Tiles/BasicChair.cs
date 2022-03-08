@@ -20,9 +20,19 @@ namespace SandboxMod.Content.Tiles
         public override void SetDefaults()
         {
             Main.tileFrameImportant[Type]   = true;
-            Main.tileLavaDeath[Type]        = true;
             Main.tileNoAttach[Type]         = true;
+            Main.tileLavaDeath[Type]        = true;
             Main.tileLighted[Type]          = true;
+
+            dustType            = ModContent.DustType<BasicDust>();
+            adjTiles            = new int[] { TileID.Chairs };
+            disableSmartCursor  = true;
+
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
+
+            ModTranslation name = CreateMapEntryName();
+            name.SetDefault("Basic Chair");
+            AddMapEntry(new Color(235, 235, 235), name);
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
             TileObjectData.newTile.StyleHorizontal      = true;
@@ -33,17 +43,6 @@ namespace SandboxMod.Content.Tiles
             TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight;
             TileObjectData.addAlternate(1);
             TileObjectData.addTile(Type);
-
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
-
-            adjTiles            = new int[] { TileID.Chairs };
-            dustType            = ModContent.DustType<BasicDust>();
-            disableSmartCursor  = true;
-
-            ModTranslation name = CreateMapEntryName();
-
-            name.SetDefault("Basic Chair");
-            AddMapEntry(new Color(235, 235, 235), name);
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) =>

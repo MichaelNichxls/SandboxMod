@@ -18,21 +18,20 @@ namespace SandboxMod.Content.Tiles
         public override void SetDefaults()
         {
             Main.tileFrameImportant[Type]   = true;
-            Main.tileLavaDeath[Type]        = true;
             Main.tileNoAttach[Type]         = true;
+            Main.tileLavaDeath[Type]        = true;
             Main.tileLighted[Type]          = true;
-
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
-            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18 };
-            TileObjectData.addTile(Type);
 
             dustType            = DustID.Wraith;
             disableSmartCursor  = true;
 
             ModTranslation name = CreateMapEntryName();
-
             name.SetDefault("Material Transmuter");
             AddMapEntry(new Color(30, 6, 49), name);
+
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
+            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18 };
+            TileObjectData.addTile(Type);
         }
 
         // Impending helpers galore

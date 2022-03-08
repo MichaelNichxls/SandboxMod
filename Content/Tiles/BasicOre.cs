@@ -18,11 +18,11 @@ namespace SandboxMod.Content.Tiles
         {
             Main.tileSolid[Type]        = true;
             Main.tileMergeDirt[Type]    = true;
-            Main.tileBlockLight[Type]   = true;
             Main.tileSpelunker[Type]    = true;
             Main.tileValue[Type]        = 420;
             Main.tileShine[Type]        = 975;
             Main.tileShine2[Type]       = true;
+            Main.tileBlockLight[Type]   = true;
             Main.tileLighted[Type]      = true;
 
             TileID.Sets.Ore[Type] = true;
@@ -35,7 +35,6 @@ namespace SandboxMod.Content.Tiles
             soundStyle  = 1;
 
             ModTranslation name = CreateMapEntryName();
-
             name.SetDefault("Basic Ore");
             AddMapEntry(new Color(12, 224, 255), name);
         }
