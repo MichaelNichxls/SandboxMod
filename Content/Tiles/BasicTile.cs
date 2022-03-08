@@ -24,7 +24,7 @@ namespace SandboxMod.Content.Tiles
             drop        = ModContent.ItemType<Items.Tiles.BasicTile>();
             dustType    = ModContent.DustType<BasicDust>();
 
-            AddMapEntry(new Color(235, 235, 235));
+            AddMapEntry(new Color(255, 255, 255));
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) =>

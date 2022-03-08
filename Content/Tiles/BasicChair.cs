@@ -2,43 +2,47 @@
 using SandboxMod.Common;
 using SandboxMod.Content.Dusts;
 using Terraria;
+using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace SandboxMod.Content.Tiles
 {
-    public class BasicWorkBench : ModTile
+    public class BasicChair : ModTile
     {
         public override bool Autoload(ref string name, ref string texture)
         {
-            texture = AssetDirectory.GetTexture<BasicWorkBench>();
+            texture = AssetDirectory.GetTexture<BasicChair>();
             return base.Autoload(ref name, ref texture);
         }
 
         public override void SetDefaults()
         {
-            // How to disable NPC step-up?
             Main.tileFrameImportant[Type]   = true;
-            Main.tileSolidTop[Type]         = true;
-            Main.tileTable[Type]            = true;
             Main.tileLavaDeath[Type]        = true;
             Main.tileNoAttach[Type]         = true;
             Main.tileLighted[Type]          = true;
 
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style2x1);
-            TileObjectData.newTile.CoordinateHeights = new int[] { 18 };
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
+            TileObjectData.newTile.StyleHorizontal      = true;
+            TileObjectData.newTile.CoordinateHeights    = new int[] { 16, 18 };
+            TileObjectData.newTile.Direction            = TileObjectDirection.PlaceLeft;
+
+            TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
+            TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight;
+            TileObjectData.addAlternate(1);
             TileObjectData.addTile(Type);
 
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
 
-            adjTiles            = new int[] { TileID.WorkBenches };
+            adjTiles            = new int[] { TileID.Chairs };
             dustType            = ModContent.DustType<BasicDust>();
             disableSmartCursor  = true;
 
             ModTranslation name = CreateMapEntryName();
 
-            name.SetDefault("Basic Work Bench");
+            name.SetDefault("Basic Chair");
             AddMapEntry(new Color(235, 235, 235), name);
         }
 
@@ -49,6 +53,6 @@ namespace SandboxMod.Content.Tiles
             (r, g, b) = (255f / byte.MaxValue, 255f / byte.MaxValue, 255f / byte.MaxValue);
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY) =>
-            Item.NewItem(new Vector2(i * 16, j * 16), new Vector2(32, 16), ModContent.ItemType<Items.Tiles.BasicWorkBench>());
+            Item.NewItem(new Vector2(i * 16, j * 16), new Vector2(16, 32), ModContent.ItemType<Items.Tiles.BasicChair>());
     }
 }
