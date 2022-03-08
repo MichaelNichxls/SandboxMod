@@ -1,4 +1,5 @@
-﻿using SandboxMod.Common;
+﻿using Microsoft.Xna.Framework;
+using SandboxMod.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,8 +19,7 @@ namespace SandboxMod.Content.Items.Weapons
             item.knockBack      = 4.5f;
             item.rare           = ItemRarityID.Blue;
             item.value          = Item.sellPrice(silver: 22);
-            item.width          = 32;
-            item.height         = 32;
+            item.Size           = new Vector2(32, 32);
             item.useTime        = 18;
             item.useAnimation   = item.useTime;
             item.useStyle       = ItemUseStyleID.Stabbing;

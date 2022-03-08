@@ -1,4 +1,5 @@
-﻿using SandboxMod.Common;
+﻿using Microsoft.Xna.Framework;
+using SandboxMod.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,8 +23,7 @@ namespace SandboxMod.Content.Projectiles.Ammo
             projectile.friendly     = true;
             projectile.penetrate    = 3;
             projectile.timeLeft     = 600;
-            projectile.width        = 8;
-            projectile.height       = 8;
+            projectile.Size         = new Vector2(8, 8);
             projectile.alpha        = byte.MaxValue;
             projectile.light        = 0.5f;
             projectile.extraUpdates = 1;

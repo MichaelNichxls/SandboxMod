@@ -1,4 +1,5 @@
-﻿using SandboxMod.Common;
+﻿using Microsoft.Xna.Framework;
+using SandboxMod.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -19,8 +20,7 @@ namespace SandboxMod.Content.Items.Tools
             item.knockBack      = 2.5f;
             item.rare           = ItemRarityID.Blue;
             item.value          = Item.sellPrice(silver: 24);
-            item.width          = 36;
-            item.height         = 36;
+            item.Size           = new Vector2(36, 36);
             item.useTime        = 18;
             item.useAnimation   = 28;
             item.useStyle       = ItemUseStyleID.SwingThrow;

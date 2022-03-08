@@ -1,4 +1,5 @@
-﻿using SandboxMod.Common;
+﻿using Microsoft.Xna.Framework;
+using SandboxMod.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -21,8 +22,7 @@ namespace SandboxMod.Content.Items.Weapons
             item.shootSpeed     = 7.5f;
             item.rare           = ItemRarityID.Blue;
             item.value          = Item.sellPrice(silver: 22);
-            item.width          = 20;
-            item.height         = 36;
+            item.Size           = new Vector2(20, 36);
             item.useTime        = 25;
             item.useAnimation   = item.useTime;
             item.useStyle       = ItemUseStyleID.HoldingOut;

@@ -1,4 +1,5 @@
-﻿using SandboxMod.Common;
+﻿using Microsoft.Xna.Framework;
+using SandboxMod.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,8 +18,7 @@ namespace SandboxMod.Content.Items.Tiles
             item.createTile     = ModContent.TileType<Content.Tiles.BasicOre>();
             item.rare           = ItemRarityID.Green;
             item.value          = Item.sellPrice(silver: 2, copper: 50);
-            item.width          = 16;
-            item.height         = 16;
+            item.Size           = new Vector2(16, 16);
             item.maxStack       = 999;
             item.useTime        = 10;
             item.useAnimation   = 15;

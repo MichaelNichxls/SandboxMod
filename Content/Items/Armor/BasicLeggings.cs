@@ -1,4 +1,5 @@
-﻿using SandboxMod.Common;
+﻿using Microsoft.Xna.Framework;
+using SandboxMod.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -19,8 +20,7 @@ namespace SandboxMod.Content.Items.Armor
             item.defense    = 6;
             item.rare       = ItemRarityID.Blue;
             item.value      = Item.sellPrice(silver: 20);
-            item.width      = 22;
-            item.height     = 18;
+            item.Size       = new Vector2(22, 18);
         }
 
         public override void AddRecipes()

@@ -1,4 +1,5 @@
-﻿using SandboxMod.Common;
+﻿using Microsoft.Xna.Framework;
+using SandboxMod.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,8 +17,7 @@ namespace SandboxMod.Content.Items
         {
             item.rare       = ItemRarityID.Blue;
             item.value      = Item.sellPrice(silver: 15);
-            item.width      = 18;
-            item.height     = 20;
+            item.Size       = new Vector2(18, 20);
             item.maxStack   = 999;
         }
 
