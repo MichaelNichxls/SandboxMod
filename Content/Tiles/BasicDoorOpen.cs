@@ -22,13 +22,11 @@ namespace SandboxMod.Content.Tiles
         public override void SetDefaults()
         {
             Main.tileFrameImportant[Type]   = true;
-            //Main.tileNoAttach[Type]         = true;
-            //Main.tileSolid[Type]            = true;
             Main.tileLavaDeath[Type]        = true;
-            Main.tileNoSunLight[Type]       = true; // I have dementia
-            //Main.tileLighted[Type]          = true;
+            Main.tileNoSunLight[Type]       = true; // ?
+            Main.tileLighted[Type]          = true;
 
-            TileID.Sets.HousingWalls[Type]  = true; // Why?
+            TileID.Sets.HousingWalls[Type]  = true; // ?
             TileID.Sets.HasOutlines[Type]   = true;
 
             closeDoorID         = ModContent.TileType<BasicDoorClosed>();
@@ -44,46 +42,17 @@ namespace SandboxMod.Content.Tiles
 
             TileObjectData.newTile.UsesCustomCanPlace   = true;
             TileObjectData.newTile.StyleHorizontal      = true;
-            TileObjectData.newTile.StyleMultiplier      = 2;
-            //TileObjectData.newTile.StyleWrapLimit       = 2;
             TileObjectData.newTile.Width                = 2;
             TileObjectData.newTile.Height               = 3;
             TileObjectData.newTile.CoordinateWidth      = 16;
             TileObjectData.newTile.CoordinateHeights    = new int[] { 16, 16, 16 };
             TileObjectData.newTile.CoordinatePadding    = 2;
-            TileObjectData.newTile.Origin               = new Point16(0, 0);
             TileObjectData.newTile.AnchorTop            = new AnchorData(AnchorType.SolidTile, 1, 0);
             TileObjectData.newTile.AnchorBottom         = new AnchorData(AnchorType.SolidTile, 1, 0);
             TileObjectData.newTile.Direction            = TileObjectDirection.PlaceRight;
             TileObjectData.newTile.LavaDeath            = true;
 
-            // Can definitely make a helper for something like this
             TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
-            // I don't understand why origin has to be specified with open doors if no item actually places them
-            TileObjectData.newAlternate.Origin = new Point16(0, 1);
-            TileObjectData.addAlternate(0);
-            
-            TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
-            TileObjectData.newAlternate.Origin = new Point16(0, 2);
-            TileObjectData.addAlternate(0);
-
-            // Copy alternate instead?
-            TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
-            TileObjectData.newTile.Origin               = new Point16(1, 0);
-            TileObjectData.newAlternate.AnchorTop       = new AnchorData(AnchorType.SolidTile, 1, 1);
-            TileObjectData.newAlternate.AnchorBottom    = new AnchorData(AnchorType.SolidTile, 1, 1);
-            TileObjectData.newTile.Direction            = TileObjectDirection.PlaceLeft;
-            TileObjectData.addAlternate(1);
-
-            TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
-            TileObjectData.newTile.Origin               = new Point16(1, 1);
-            TileObjectData.newAlternate.AnchorTop       = new AnchorData(AnchorType.SolidTile, 1, 1);
-            TileObjectData.newAlternate.AnchorBottom    = new AnchorData(AnchorType.SolidTile, 1, 1);
-            TileObjectData.newTile.Direction            = TileObjectDirection.PlaceLeft;
-            TileObjectData.addAlternate(1);
-
-            TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
-            TileObjectData.newTile.Origin               = new Point16(1, 2);
             TileObjectData.newAlternate.AnchorTop       = new AnchorData(AnchorType.SolidTile, 1, 1);
             TileObjectData.newAlternate.AnchorBottom    = new AnchorData(AnchorType.SolidTile, 1, 1);
             TileObjectData.newTile.Direction            = TileObjectDirection.PlaceLeft;

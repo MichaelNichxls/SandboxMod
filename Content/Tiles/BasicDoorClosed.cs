@@ -43,7 +43,6 @@ namespace SandboxMod.Content.Tiles
             name.SetDefault("Basic Door");
             AddMapEntry(new Color(235, 235, 235), name);
 
-            // Add styles?
             TileObjectData.newTile.UsesCustomCanPlace   = true;
             TileObjectData.newTile.Width                = 1;
             TileObjectData.newTile.Height               = 3;
@@ -71,6 +70,7 @@ namespace SandboxMod.Content.Tiles
         public override void NumDust(int i, int j, bool fail, ref int num) =>
             num = 1;
 
+        // Light still remains from the open door when the door is closed, and I don't know how to fix that programmatically
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) =>
             (r, g, b) = (255f / byte.MaxValue, 255f / byte.MaxValue, 255f / byte.MaxValue);
 
