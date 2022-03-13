@@ -30,6 +30,9 @@ namespace SandboxMod.Content.Items.Tiles
             item.autoReuse      = true;
         }
 
+        public override void AutoLightSelect(ref bool dryTorch, ref bool wetTorch, ref bool glowstick) =>
+            dryTorch = true;
+
         // Make formatting consistent
         public override void HoldItem(Player player)
         {
@@ -43,9 +46,6 @@ namespace SandboxMod.Content.Items.Tiles
                 player.RotatedRelativePoint(new Vector2(player.itemLocation.X + (12f * player.direction) + player.velocity.X, player.itemLocation.Y - 14f + player.velocity.Y)),
                 new Vector3(1f, 1f, 1f));
         }
-
-        public override void AutoLightSelect(ref bool dryTorch, ref bool wetTorch, ref bool glowstick) =>
-            dryTorch = true;
 
         public override void PostUpdate()
         {
