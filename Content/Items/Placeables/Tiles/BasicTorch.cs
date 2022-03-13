@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace SandboxMod.Content.Items.Tiles
+namespace SandboxMod.Content.Items.Placeables.Tiles
 {
     public class BasicTorch : ModItem
     {
@@ -33,7 +33,6 @@ namespace SandboxMod.Content.Items.Tiles
         public override void AutoLightSelect(ref bool dryTorch, ref bool wetTorch, ref bool glowstick) =>
             dryTorch = true;
 
-        // Make formatting consistent
         public override void HoldItem(Player player)
         {
             if (player.wet)
@@ -49,8 +48,10 @@ namespace SandboxMod.Content.Items.Tiles
 
         public override void PostUpdate()
         {
-            if (!item.wet)
-                Lighting.AddLight(item.Center, new Vector3(1f, 1f, 1f));
+            if (item.wet)
+                return;
+
+            Lighting.AddLight(item.Center, new Vector3(1f, 1f, 1f));
         }
     }
 }

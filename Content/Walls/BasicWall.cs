@@ -18,7 +18,7 @@ namespace SandboxMod.Content.Walls
         {
             Main.wallHouse[Type] = true;
 
-            drop        = ModContent.ItemType<Items.Walls.BasicWall>();
+            drop        = ModContent.ItemType<Items.Placeables.Walls.BasicWall>();
             dustType    = ModContent.DustType<BasicDust>();
 
             AddMapEntry(new Color(200, 200, 200));

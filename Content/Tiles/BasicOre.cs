@@ -29,7 +29,7 @@ namespace SandboxMod.Content.Tiles
 
             minPick     = 65;
             mineResist  = 2.5f;
-            drop        = ModContent.ItemType<Items.Tiles.BasicOre>();
+            drop        = ModContent.ItemType<Items.Placeables.Tiles.BasicOre>();
             dustType    = DustID.IceRod;
             soundType   = SoundID.Tink;
             soundStyle  = 1;

@@ -21,7 +21,7 @@ namespace SandboxMod.Content.Tiles
             Main.tileBlockLight[Type]   = true;
             Main.tileLighted[Type]      = true;
 
-            drop        = ModContent.ItemType<Items.Tiles.BasicTile>();
+            drop        = ModContent.ItemType<Items.Placeables.Tiles.BasicTile>();
             dustType    = ModContent.DustType<BasicDust>();
 
             AddMapEntry(new Color(245, 245, 245));

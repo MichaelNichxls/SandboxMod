@@ -43,6 +43,6 @@ namespace SandboxMod.Content.Tiles
 
         // Make const for 16, maybe
         public override void KillMultiTile(int i, int j, int frameX, int frameY) =>
-            Item.NewItem(new Vector2(i * 16, j * 16), new Vector2(48, 32), ModContent.ItemType<Items.Tiles.MaterialTransmuter>());
+            Item.NewItem(new Vector2(i * 16, j * 16), new Vector2(48, 32), ModContent.ItemType<Items.Placeables.Tiles.MaterialTransmuter>());
     }
 }

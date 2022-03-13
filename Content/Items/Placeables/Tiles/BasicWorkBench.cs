@@ -4,20 +4,20 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace SandboxMod.Content.Items.Tiles
+namespace SandboxMod.Content.Items.Placeables.Tiles
 {
-    public class BasicChair : ModItem
+    public class BasicWorkBench : ModItem
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicChair>();
+        public override string Texture => AssetDirectory.GetTexture<BasicWorkBench>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault("A basic chair");
+        public override void SetStaticDefaults() => Tooltip.SetDefault("A basic work bench used for basic crafting");
 
         public override void SetDefaults()
         {
             item.consumable     = true;
-            item.createTile     = ModContent.TileType<Content.Tiles.BasicChair>();
+            item.createTile     = ModContent.TileType<Content.Tiles.BasicWorkBench>();
             item.value          = Item.sellPrice(copper: 30);
-            item.Size           = new Vector2(16, 32);
+            item.Size           = new Vector2(32, 18);
             item.maxStack       = 99;
             item.useTime        = 10;
             item.useAnimation   = 15;

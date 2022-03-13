@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using SandboxMod.Common;
 using SandboxMod.Content.Dusts;
-using SandboxMod.Content.Items.Tiles;
+using SandboxMod.Content.Items.Placeables.Tiles;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;

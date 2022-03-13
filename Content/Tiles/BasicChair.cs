@@ -52,6 +52,6 @@ namespace SandboxMod.Content.Tiles
             (r, g, b) = (255f / byte.MaxValue, 255f / byte.MaxValue, 255f / byte.MaxValue);
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY) =>
-            Item.NewItem(new Vector2(i * 16, j * 16), new Vector2(16, 32), ModContent.ItemType<Items.Tiles.BasicChair>());
+            Item.NewItem(new Vector2(i * 16, j * 16), new Vector2(16, 32), ModContent.ItemType<Items.Placeables.Tiles.BasicChair>());
     }
 }

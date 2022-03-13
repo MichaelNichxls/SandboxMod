@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace SandboxMod.Content.Items.Tiles
+namespace SandboxMod.Content.Items.Placeables.Tiles
 {
     public class BasicDoor : ModItem
     {

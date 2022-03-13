@@ -28,7 +28,7 @@ namespace SandboxMod.Content.Tiles
 
             TileID.Sets.FramesOnKillWall[Type] = true;
 
-            drop                = ModContent.ItemType<Items.Tiles.BasicTorch>();
+            drop                = ModContent.ItemType<Items.Placeables.Tiles.BasicTorch>();
             dustType            = ModContent.DustType<BasicDust>();
             adjTiles            = new int[] { TileID.Torches };
             torch               = true;
@@ -47,10 +47,10 @@ namespace SandboxMod.Content.Tiles
         public override void NumDust(int i, int j, bool fail, ref int num) =>
             num = Main.rand.Next(1, 3);
 
-        // Modify all other basic tiles.. again
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             // Make a helper for getting frames
+            // Make a helper for the RGB scaling math, with an added brightness factor
             if (Main.tile[i, j].frameX < 66)
                 (r, g, b) = (255f / byte.MaxValue, 255f / byte.MaxValue, 255f / byte.MaxValue);
         }
@@ -61,7 +61,7 @@ namespace SandboxMod.Content.Tiles
 
             player.noThrow          = 2;
             player.showItemIcon     = true;
-            player.showItemIcon2    = ModContent.ItemType<Items.Tiles.BasicTorch>();
+            player.showItemIcon2    = ModContent.ItemType<Items.Placeables.Tiles.BasicTorch>();
         }
 
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height) =>
