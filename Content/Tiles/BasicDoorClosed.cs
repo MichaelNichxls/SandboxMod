@@ -26,7 +26,6 @@ namespace SandboxMod.Content.Tiles
             Main.tileSolid[Type]            = true;
             Main.tileLavaDeath[Type]        = true;
             Main.tileBlockLight[Type]       = true;
-            Main.tileLighted[Type]          = true;
 
             TileID.Sets.NotReallySolid[Type]    = true;
             TileID.Sets.DrawsWalls[Type]        = true; // ?
@@ -69,10 +68,6 @@ namespace SandboxMod.Content.Tiles
 
         public override void NumDust(int i, int j, bool fail, ref int num) =>
             num = 1;
-
-        // Light still remains from the open door when the door is closed, and I don't know how to fix that programmatically
-        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) =>
-            (r, g, b) = (255f / byte.MaxValue, 255f / byte.MaxValue, 255f / byte.MaxValue);
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY) =>
             Item.NewItem(new Vector2(i * 16, j * 16), new Vector2(16, 48), ModContent.ItemType<BasicDoor>());

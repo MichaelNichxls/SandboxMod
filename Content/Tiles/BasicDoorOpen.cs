@@ -23,10 +23,10 @@ namespace SandboxMod.Content.Tiles
         {
             Main.tileFrameImportant[Type]   = true;
             Main.tileLavaDeath[Type]        = true;
-            Main.tileNoSunLight[Type]       = true; // ?
+            Main.tileNoSunLight[Type]       = true;
             Main.tileLighted[Type]          = true;
 
-            TileID.Sets.HousingWalls[Type]  = true; // ?
+            TileID.Sets.HousingWalls[Type]  = true;
             TileID.Sets.HasOutlines[Type]   = true;
 
             closeDoorID         = ModContent.TileType<BasicDoorClosed>();
@@ -65,9 +65,6 @@ namespace SandboxMod.Content.Tiles
 
         public override void NumDust(int i, int j, bool fail, ref int num) =>
             num = 1;
-
-        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) =>
-            (r, g, b) = (255f / byte.MaxValue, 255f / byte.MaxValue, 255f / byte.MaxValue);
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY) =>
             Item.NewItem(new Vector2(i * 16, j * 16), new Vector2(32, 48), ModContent.ItemType<BasicDoor>());

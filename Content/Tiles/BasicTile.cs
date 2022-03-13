@@ -19,7 +19,6 @@ namespace SandboxMod.Content.Tiles
             Main.tileSolid[Type]        = true;
             Main.tileMergeDirt[Type]    = true;
             Main.tileBlockLight[Type]   = true;
-            Main.tileLighted[Type]      = true;
 
             drop        = ModContent.ItemType<Items.Placeables.Tiles.BasicTile>();
             dustType    = ModContent.DustType<BasicDust>();
@@ -29,8 +28,5 @@ namespace SandboxMod.Content.Tiles
 
         public override void NumDust(int i, int j, bool fail, ref int num) =>
             num = fail ? 1 : 3;
-
-        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) =>
-            (r, g, b) = (255f / byte.MaxValue, 255f / byte.MaxValue, 255f / byte.MaxValue);
     }
 }

@@ -24,7 +24,6 @@ namespace SandboxMod.Content.Tiles
             Main.tileTable[Type]            = true;
             Main.tileSolidTop[Type]         = true;
             Main.tileLavaDeath[Type]        = true;
-            Main.tileLighted[Type]          = true;
 
             dustType            = ModContent.DustType<BasicDust>();
             adjTiles            = new int[] { TileID.WorkBenches };
@@ -43,9 +42,6 @@ namespace SandboxMod.Content.Tiles
 
         public override void NumDust(int i, int j, bool fail, ref int num) =>
             num = fail ? 1 : 3;
-
-        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) =>
-            (r, g, b) = (255f / byte.MaxValue, 255f / byte.MaxValue, 255f / byte.MaxValue);
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY) =>
             Item.NewItem(new Vector2(i * 16, j * 16), new Vector2(32, 16), ModContent.ItemType<Items.Placeables.Tiles.BasicWorkBench>());
