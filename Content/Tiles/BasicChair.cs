@@ -32,7 +32,7 @@ namespace SandboxMod.Content.Tiles
 
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Basic Chair");
-            AddMapEntry(new Color(235, 235, 235), name);
+            AddMapEntry(new Color(225, 225, 225), name);
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
             TileObjectData.newTile.StyleHorizontal      = true;

@@ -34,7 +34,7 @@ namespace SandboxMod.Content.Tiles
 
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Basic Work Bench");
-            AddMapEntry(new Color(235, 235, 235), name);
+            AddMapEntry(new Color(225, 225, 225), name);
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x1);
             TileObjectData.newTile.CoordinateHeights = new int[] { 18 };

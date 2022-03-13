@@ -21,7 +21,7 @@ namespace SandboxMod.Content.Walls
             drop        = ModContent.ItemType<Items.Walls.BasicWall>();
             dustType    = ModContent.DustType<BasicDust>();
 
-            AddMapEntry(new Color(205, 205, 205));
+            AddMapEntry(new Color(200, 200, 200));
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) =>

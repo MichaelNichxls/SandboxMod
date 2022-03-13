@@ -38,7 +38,7 @@ namespace SandboxMod.Content.Tiles
 
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Basic Door");
-            AddMapEntry(new Color(235, 235, 235), name);
+            AddMapEntry(new Color(225, 225, 225), name);
 
             TileObjectData.newTile.UsesCustomCanPlace   = true;
             TileObjectData.newTile.StyleHorizontal      = true;
