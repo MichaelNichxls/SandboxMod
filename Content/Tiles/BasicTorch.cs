@@ -41,6 +41,8 @@ namespace SandboxMod.Content.Tiles
             AddMapEntry(new Color(255, 255, 255), name);
 
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleTorch);
+            // I don't understand why this doesn't work
+            //TileObjectData.newTile.WaterPlacement = Terraria.Enums.LiquidPlacement.NotAllowed;
             TileObjectData.addTile(Type);
         }
 
@@ -78,6 +80,7 @@ namespace SandboxMod.Content.Tiles
             const int width = 20;
             const int height = 20;
 
+            // Could make helper getters for these
             int offsetY = WorldGen.SolidTile(i, j - 1)
                 ? WorldGen.SolidTile(i - 1, j + 1) || WorldGen.SolidTile(i + 1, j + 1)
                     ? 4
@@ -86,7 +89,7 @@ namespace SandboxMod.Content.Tiles
 
             var zero = Main.drawToScreen
                 ? Vector2.Zero
-                : new Vector2(Main.offScreenRange, Main.offScreenRange);
+                : new Vector2(Main.offScreenRange);
 
             ulong seed = Main.TileFrameSeed ^ (ulong)(((long)j << 32) | (long)(uint)i);
 
@@ -94,6 +97,7 @@ namespace SandboxMod.Content.Tiles
             {
                 spriteBatch.Draw(
                     // Have an overload for AssetDirectory.GetTexture<T>() return Texture2D
+                    // Maybe make an AssetDirectory.GetFlameTexture<T>() method for the hell of it
                     ModContent.GetTexture(AssetDirectory.GetTexture<BasicTorch>() + "_Flame"),
                     new Vector2(
                         (i * 16) - (int)Main.screenPosition.X - ((width - 16f) / 2f) + (Utils.RandomInt(ref seed, -10, 11) * 0.15f),
