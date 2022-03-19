@@ -11,7 +11,8 @@ namespace SandboxMod.Content.Items
     {
         public override string Texture => AssetDirectory.GetTexture<BasicItem>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault("A basic item");
+        public override void SetStaticDefaults() =>
+            Tooltip.SetDefault("A basic item");
 
         public override void SetDefaults()
         {

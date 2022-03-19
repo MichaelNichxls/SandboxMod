@@ -10,7 +10,8 @@ namespace SandboxMod.Content.Items.Ammo
     {
         public override string Texture => AssetDirectory.GetTexture<BasicBullet>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault("A basic bullet");
+        public override void SetStaticDefaults() =>
+            Tooltip.SetDefault("A basic bullet");
 
         public override void SetDefaults()
         {

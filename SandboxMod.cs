@@ -126,7 +126,7 @@ namespace SandboxMod
             recipe.SetResult(ItemID.TitaniumBar);
             recipe.AddBidirectionalRecipe();
             #endregion Hardmode Ores
-
+            #region Etc.
             recipe = new ModRecipe(this);
 
             recipe.AddIngredient(ItemID.ShadowScale);
@@ -156,6 +156,7 @@ namespace SandboxMod
             recipe.AddBidirectionalRecipe();
 
             // etc.
+            #endregion Etc.
         }
 
         public override void AddRecipeGroups()

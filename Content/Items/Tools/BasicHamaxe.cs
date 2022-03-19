@@ -10,7 +10,8 @@ namespace SandboxMod.Content.Items.Tools
     {
         public override string Texture => AssetDirectory.GetTexture<BasicHamaxe>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault("A basic hamaxe");
+        public override void SetStaticDefaults() =>
+            Tooltip.SetDefault("A basic hamaxe");
 
         public override void SetDefaults()
         {

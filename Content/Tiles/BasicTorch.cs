@@ -51,9 +51,11 @@ namespace SandboxMod.Content.Tiles
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
+            Tile tile = Main.tile[i, j];
+
             // Make a helper for getting frames
             // Make a helper for the RGB scaling math, with an added brightness factor
-            if (Main.tile[i, j].frameX < 66)
+            if (tile.frameX < 66)
                 (r, g, b) = (255f / byte.MaxValue, 255f / byte.MaxValue, 255f / byte.MaxValue);
         }
 
@@ -76,9 +78,11 @@ namespace SandboxMod.Content.Tiles
         // I don't even know
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
+            Tile tile = Main.tile[i, j];
+
             // Helper getter
-            const int width = 20;
-            const int height = 20;
+            int width = 20;
+            int height = 20;
 
             // Could make helper getters for these
             int offsetY = WorldGen.SolidTile(i, j - 1)
@@ -95,14 +99,15 @@ namespace SandboxMod.Content.Tiles
 
             for (int k = 0; k < 7; k++)
             {
+                float x = Utils.RandomInt(ref seed, -10, 11) * 0.15f;
+                float y = Utils.RandomInt(ref seed, -10, 1) * 0.35f;
+
+                // Have an overload for AssetDirectory.GetTexture<T>() return Texture2D
+                // Maybe make an AssetDirectory.GetFlameTexture<T>() method for the hell of it
                 spriteBatch.Draw(
-                    // Have an overload for AssetDirectory.GetTexture<T>() return Texture2D
-                    // Maybe make an AssetDirectory.GetFlameTexture<T>() method for the hell of it
                     ModContent.GetTexture(AssetDirectory.GetTexture<BasicTorch>() + "_Flame"),
-                    new Vector2(
-                        (i * 16) - (int)Main.screenPosition.X - ((width - 16f) / 2f) + (Utils.RandomInt(ref seed, -10, 11) * 0.15f),
-                        (j * 16) - (int)Main.screenPosition.Y + offsetY + (Utils.RandomInt(ref seed, -10, 1) * 0.35f)) + zero,
-                    new Rectangle(Main.tile[i, j].frameX, Main.tile[i, j].frameY, width, height),
+                    new Vector2((i * 16) - (int)Main.screenPosition.X + x - ((width - 16f) / 2f), (j * 16) - (int)Main.screenPosition.Y + y + offsetY) + zero,
+                    new Rectangle(tile.frameX, tile.frameY, width, height),
                     new Color(100, 100, 100, 0));
             }
         }

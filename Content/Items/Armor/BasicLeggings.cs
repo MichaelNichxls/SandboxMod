@@ -11,8 +11,8 @@ namespace SandboxMod.Content.Items.Armor
     {
         public override string Texture => AssetDirectory.GetTexture<BasicLeggings>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault(
-            "20% increased movement speed"
+        public override void SetStaticDefaults() =>
+            Tooltip.SetDefault("20% increased movement speed"
                 + "\nBasic leggings");
 
         public override void SetDefaults()
@@ -34,6 +34,7 @@ namespace SandboxMod.Content.Items.Armor
             recipe.AddRecipe();
         }
 
-        public override void UpdateEquip(Player player) => player.moveSpeed += 0.2f;
+        public override void UpdateEquip(Player player) =>
+            player.moveSpeed += 0.2f;
     }
 }

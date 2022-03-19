@@ -9,7 +9,8 @@ namespace SandboxMod.Content.Items.Placeables.Walls
     {
         public override string Texture => AssetDirectory.GetTexture<BasicWall>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault("A basic wall");
+        public override void SetStaticDefaults() =>
+            Tooltip.SetDefault("A basic wall");
 
         public override void SetDefaults()
         {

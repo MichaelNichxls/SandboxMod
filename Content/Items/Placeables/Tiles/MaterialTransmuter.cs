@@ -8,10 +8,10 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
 {
     public class MaterialTransmuter : ModItem
     {
-        // Maybe widen the texture a bit
         public override string Texture => AssetDirectory.GetTexture<MaterialTransmuter>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault("Allows for transmutation of materials into their counterparts");
+        public override void SetStaticDefaults() =>
+            Tooltip.SetDefault("Allows for transmutation of materials into their counterparts");
 
         public override void SetDefaults()
         {

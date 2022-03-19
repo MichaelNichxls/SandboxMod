@@ -22,8 +22,8 @@ namespace SandboxMod.Content.NPCs
             npc.damage          = 14;
             npc.defense         = 6;
             npc.knockBackResist = 0.5f;
-            npc.value           = 80f; //
-            npc.Size            = new Vector2(18, 40); // Main.npc[]
+            npc.value           = 80f;
+            npc.Size            = new Vector2(18, 40); // Should have a consistent way of automatically getting this, if possible
             npc.HitSound        = SoundID.NPCHit1;
             npc.DeathSound      = SoundID.NPCDeath2;
             npc.aiStyle         = 3;
@@ -34,16 +34,13 @@ namespace SandboxMod.Content.NPCs
             bannerItem      = Item.BannerToItem(banner);
         }
 
-        //
         public override float SpawnChance(NPCSpawnInfo spawnInfo) =>
             SpawnCondition.OverworldNightMonster.Chance * 0.1f;
 
-        //
         public override void HitEffect(int hitDirection, double damage)
         {
             for (int i = 0; i < 10; i++)
             {
-                // I should be consistent with things like this
                 var dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, Main.rand.Next(4) + DustID.Confetti);
 
                 dust.velocity.X += Main.rand.NextFloat(-0.05f, 0.05f);

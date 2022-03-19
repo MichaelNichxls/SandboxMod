@@ -11,7 +11,8 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
     {
         public override string Texture => AssetDirectory.GetTexture<BasicTorch>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault("A basic torch that provides light");
+        public override void SetStaticDefaults() =>
+            Tooltip.SetDefault("A basic torch that provides light");
 
         public override void SetDefaults()
         {
@@ -41,9 +42,8 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
             if (Main.rand.Next(player.itemAnimation > 0 ? 40 : 80) == 0)
                 Dust.NewDust(new Vector2(player.itemLocation.X + (16f * player.direction), player.itemLocation.Y - (14f * player.gravDir)), 4, 4, ModContent.DustType<BasicDust>());
 
-            Lighting.AddLight(
-                player.RotatedRelativePoint(new Vector2(player.itemLocation.X + (12f * player.direction) + player.velocity.X, player.itemLocation.Y - 14f + player.velocity.Y)),
-                new Vector3(1f, 1f, 1f));
+            Vector2 position = player.RotatedRelativePoint(new Vector2(player.itemLocation.X + (12f * player.direction) + player.velocity.X, player.itemLocation.Y - 14f + player.velocity.Y));
+            Lighting.AddLight(position, new Vector3(1f, 1f, 1f));
         }
 
         public override void PostUpdate()

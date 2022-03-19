@@ -28,7 +28,7 @@ namespace SandboxMod.Content.Dusts
             dust.rotation   += dust.velocity.X * 0.15f;
             dust.scale      *= 0.99f;
 
-            Lighting.AddLight(dust.position, new Vector3(0.35f * dust.scale, 0.35f * dust.scale, 0.35f * dust.scale));
+            Lighting.AddLight(dust.position, new Vector3(0.35f * dust.scale));
 
             if (dust.scale < 0.5f)
                 dust.active = false;

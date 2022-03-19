@@ -10,7 +10,8 @@ namespace SandboxMod.Content.Items.Tools
     {
         public override string Texture => AssetDirectory.GetTexture<BasicAxe>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault("A basic axe");
+        public override void SetStaticDefaults() =>
+            Tooltip.SetDefault("A basic axe");
 
         public override void SetDefaults()
         {

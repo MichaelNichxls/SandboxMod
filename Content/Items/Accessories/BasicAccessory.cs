@@ -10,8 +10,8 @@ namespace SandboxMod.Content.Items.Accessories
     {
         public override string Texture => AssetDirectory.GetTexture<BasicAccessory>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault(
-            "4 defense"
+        public override void SetStaticDefaults() =>
+            Tooltip.SetDefault("4 defense"
                 + "\n+20 max life"
                 + "\n16% increased damage"
                 + "\nA basic accessory");

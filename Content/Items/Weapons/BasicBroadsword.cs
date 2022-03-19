@@ -10,7 +10,8 @@ namespace SandboxMod.Content.Items.Weapons
     {
         public override string Texture => AssetDirectory.GetTexture<BasicBroadsword>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault("A basic broadsword");
+        public override void SetStaticDefaults() =>
+            Tooltip.SetDefault("A basic broadsword");
 
         public override void SetDefaults()
         {
@@ -31,7 +32,6 @@ namespace SandboxMod.Content.Items.Weapons
         {
             var recipe = new ModRecipe(mod);
 
-            // Make const string
             recipe.AddIngredient(ItemID.PlatinumBar, 8);
             recipe.AddIngredient(ModContent.ItemType<BasicItem>());
             recipe.AddTile(TileID.Anvils);

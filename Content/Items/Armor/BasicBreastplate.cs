@@ -11,7 +11,8 @@ namespace SandboxMod.Content.Items.Armor
     {
         public override string Texture => AssetDirectory.GetTexture<BasicBreastplate>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault("A basic breastplate");
+        public override void SetStaticDefaults() =>
+            Tooltip.SetDefault("A basic breastplate");
 
         public override void SetDefaults()
         {

@@ -10,8 +10,8 @@ namespace SandboxMod.Content.Items.Tools
     {
         public override string Texture => AssetDirectory.GetTexture<BasicPickaxe>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault(
-            "Able to mine Hellstone"
+        public override void SetStaticDefaults() =>
+            Tooltip.SetDefault("Able to mine Hellstone"
                 + "\nA basic pickaxe");
 
         public override void SetDefaults()

@@ -10,7 +10,8 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
     {
         public override string Texture => AssetDirectory.GetTexture<BasicDoor>();
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault("A basic door");
+        public override void SetStaticDefaults() =>
+            Tooltip.SetDefault("A basic door");
 
         public override void SetDefaults()
         {
