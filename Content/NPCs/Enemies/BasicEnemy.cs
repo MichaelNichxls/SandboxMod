@@ -4,17 +4,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace SandboxMod.Content.NPCs
+namespace SandboxMod.Content.NPCs.Enemies
 {
-    public class BasicNPC : ModNPC
+    public class BasicEnemy : ModNPC
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicNPC>();
+        public override string Texture => AssetDirectory.GetTexture<BasicEnemy>();
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Basic NPC");
+        public override void SetStaticDefaults() =>
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Zombie];
-        }
 
         public override void SetDefaults()
         {
@@ -23,7 +20,9 @@ namespace SandboxMod.Content.NPCs
             npc.defense         = 6;
             npc.knockBackResist = 0.5f;
             npc.value           = 80f;
-            npc.Size            = new Vector2(18, 40); // Should have a consistent way of automatically getting this, if possible
+            // NOT: npc.Size = new Vector2(34, 46);
+            // Should have a consistent way of automatically getting Size, if possible
+            npc.Size            = new Vector2(18, 40);
             npc.HitSound        = SoundID.NPCHit1;
             npc.DeathSound      = SoundID.NPCDeath2;
             npc.aiStyle         = 3;
@@ -33,10 +32,7 @@ namespace SandboxMod.Content.NPCs
             banner          = Item.NPCtoBanner(NPCID.Zombie);
             bannerItem      = Item.BannerToItem(banner);
         }
-
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) =>
-            SpawnCondition.OverworldNightMonster.Chance * 0.1f;
-
+        
         public override void HitEffect(int hitDirection, double damage)
         {
             for (int i = 0; i < 10; i++)
@@ -48,5 +44,8 @@ namespace SandboxMod.Content.NPCs
                 dust.scale      *= Main.rand.NextFloat(-0.03f, 0.03f) + 1f;
             }
         }
+
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) =>
+            SpawnCondition.OverworldNightMonster.Chance * 0.1f;
     }
 }
