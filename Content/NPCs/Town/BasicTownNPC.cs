@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using SandboxMod.Common;
 using SandboxMod.Content.Dusts;
+using SandboxMod.Content.Items.Armor.Vanity;
 using SandboxMod.Content.Tiles;
 using SandboxMod.Content.Walls;
 using System;
@@ -151,9 +152,8 @@ namespace SandboxMod.Content.NPCs.Town
         {
         }
 
-        public override void NPCLoot()
-        {
-        }
+        public override void NPCLoot() =>
+            Item.NewItem(npc.getRect(), ModContent.ItemType<BasicCostume>());
 
         public override bool CanGoToStatue(bool toKingStatue) =>
             true;
