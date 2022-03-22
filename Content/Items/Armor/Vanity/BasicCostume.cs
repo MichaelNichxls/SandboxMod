@@ -5,24 +5,12 @@ using SandboxMod.Content.Dusts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 namespace SandboxMod.Content.Items.Armor.Vanity
 {
     public class BasicCostume : ModItem
     {
         public override string Texture => AssetDirectory.GetTexture<BasicCostume>();
-
-        public override void Load(TagCompound tag)
-        {
-            if (Main.netMode != NetmodeID.Server)
-            {
-                // Update
-                mod.AddEquipTexture(new BlockyHead(), this, EquipType.Head, Name, $"{Texture}_{EquipType.Head}");
-                mod.AddEquipTexture(this, EquipType.Body, Name, $"{Texture}_{EquipType.Body}");
-                mod.AddEquipTexture(this, EquipType.Legs, Name, $"{Texture}_{EquipType.Legs}");
-            }
-        }
 
         public override void SetStaticDefaults() =>
             Tooltip.SetDefault("Turns the holder into Blocky"); // Update
@@ -45,12 +33,27 @@ namespace SandboxMod.Content.Items.Armor.Vanity
     }
 
     // Move
-    public class BlockyHead : EquipTexture
+    public class BasicHead : EquipTexture
     {
+        public override bool DrawHead() =>
+            false;
+
         public override void UpdateVanitySet(Player player)
         {
             if (Main.rand.NextBool(20))
                 Dust.NewDust(player.position, player.width, player.height, ModContent.DustType<BasicDust>());
         }
+    }
+
+    public class BasicBody : EquipTexture
+    {
+        public override bool DrawBody() =>
+            false;
+    }
+
+    public class BasicLegs : EquipTexture
+    {
+        public override bool DrawLegs() =>
+            false;
     }
 }
