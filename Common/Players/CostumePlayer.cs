@@ -1,4 +1,5 @@
-﻿using SandboxMod.Content.Items.Armor.Vanity;
+﻿using SandboxMod.Content.Buffs;
+using SandboxMod.Content.Items.Armor.Vanity;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -24,15 +25,45 @@ namespace SandboxMod.Common.Players
             BlockyAccessory = BlockyHideVanity = BlockyForceVanity = BlockyPower = false;
         }
 
+        public override void FrameEffects()
+        {
+            if ((BlockyPower || BlockyForceVanity) && !BlockyHideVanity)
+            {
+                // Get internal names
+                player.head = mod.GetEquipSlot("BasicHead", EquipType.Head);
+                player.body = mod.GetEquipSlot("BasicBody", EquipType.Body);
+                player.legs = mod.GetEquipSlot("BasicLegs", EquipType.Legs);
+            }
+        }
+
+        public override void ModifyDrawInfo(ref PlayerDrawInfo drawInfo)
+        {
+            if ((BlockyPower || BlockyForceVanity) && !BlockyHideVanity)
+            {
+                player.headRotation = player.velocity.Y * player.direction * 0.1f;
+                player.headRotation = Utils.Clamp(player.headRotation, -0.3f, 0.3f);
+
+                //if (player.InModBiome(ModContent.GetInstance<ExampleSurfaceBiome>()))
+                //    player.headRotation = (float)Main.time * player.direction * 0.1f;
+            }
+        }
+
+        public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
+        {
+            // Make sure this condition is the same as the condition in the Buff to remove itself.
+            // This is done here instead of in ModItem.UpdateAccessory in case we want future upgraded items to set BlockyAccessory
+            if (player.townNPCs >= 1 && BlockyAccessory)
+                player.AddBuff(ModContent.BuffType<BasicCostumeBuff>(), 60);
+        }
+
         public override void UpdateVanityAccessories()
         {
             // Make 13 and/or 18 const?
             for (int i = 13; i < 18 + player.extraAccessorySlots; i++)
             {
-                // Inline?
-                Item item = player.armor[i];
+                Item armor = player.armor[i];
 
-                if (item.type == ModContent.ItemType<BasicCostume>())
+                if (armor.type == ModContent.ItemType<BasicCostume>())
                 {
                     BlockyHideVanity    = false;
                     BlockyForceVanity   = true;
@@ -40,31 +71,9 @@ namespace SandboxMod.Common.Players
             }
         }
 
-        public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
-        {
-            // Make sure this condition is the same as the condition in the Buff to remove itself. We do this here instead of in ModItem.UpdateAccessory in case we want future upgraded items to set blockyAccessory
-            // May move into a separate method for that very purpose
-            //if (player.townNPCs >= 1 && BlockyAccessory)
-            //    player.AddBuff(ModContent.BuffType<Blocky>(), 60);
-        }
-
-        public override void FrameEffects()
-        {
-            if ((BlockyPower || BlockyForceVanity) && !BlockyHideVanity)
-            {
-                var basicCostume = ModContent.GetInstance<BasicCostume>();
-
-                player.head = mod.GetEquipSlot(basicCostume.Name, EquipType.Head);
-                player.body = mod.GetEquipSlot(basicCostume.Name, EquipType.Body);
-                player.legs = mod.GetEquipSlot(basicCostume.Name, EquipType.Legs);
-            }
-        }
-
-        public override void ModifyDrawInfo(ref PlayerDrawInfo drawInfo)
-        {
-        }
-
-        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        public override bool PreHurt(
+            bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
+            ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
             if (BlockyAccessory)
                 playSound = false;

@@ -13,15 +13,18 @@ namespace SandboxMod.Content.Items.Armor.Vanity
         public override string Texture => AssetDirectory.GetTexture<BasicCostume>();
 
         public override void SetStaticDefaults() =>
-            Tooltip.SetDefault("Turns the holder into Blocky"); // Update
+            Tooltip.SetDefault("Turns the holder into the Basic Town NPC near town NPCs"); // Get DisplayName
 
         public override void SetDefaults()
         {
             item.accessory  = true;
             item.rare       = ItemRarityID.Pink;
-            item.value      = Item.buyPrice(gold: 15); // vs. Item.sellPrice()
+            item.value      = Item.buyPrice(gold: 15);
             item.Size       = new Vector2(16, 16);
         }
+
+        public override bool IsVanitySet(int head, int body, int legs) =>
+            true;
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
@@ -32,7 +35,7 @@ namespace SandboxMod.Content.Items.Armor.Vanity
         }
     }
 
-    // Move
+    // Move into separate file
     public class BasicHead : EquipTexture
     {
         public override bool DrawHead() =>
