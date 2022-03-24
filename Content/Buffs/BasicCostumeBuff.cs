@@ -18,7 +18,7 @@ namespace SandboxMod.Content.Buffs
         {
             DisplayName.SetDefault("Basic Costume Buff");
             Description.SetDefault("Greatly increases jump speed and fall resistance"
-                + "\nOccasionally grants the player a Basic Tile"); // Get DisplayName
+                + $"\nOccasionally grants the player a {ModContent.GetInstance<BasicTile>().DisplayName.GetDefault()}");
 
             Main.debuff[Type]               = true;
             Main.buffNoSave[Type]           = true;
@@ -37,7 +37,7 @@ namespace SandboxMod.Content.Buffs
                 costumePlayer.BlockyPower = true;
 
                 player.jumpSpeedBoost   += 5f;
-                player.extraFall        += 45;
+                player.extraFall        += 30;
 
                 if (Main.myPlayer == player.whoAmI && Main.time % 1000 == 0)
                     player.QuickSpawnItem(ModContent.ItemType<BasicTile>());

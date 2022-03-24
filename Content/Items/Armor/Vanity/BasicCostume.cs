@@ -2,6 +2,7 @@
 using SandboxMod.Common;
 using SandboxMod.Common.Players;
 using SandboxMod.Content.Dusts;
+using SandboxMod.Content.NPCs.Town;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,7 +14,7 @@ namespace SandboxMod.Content.Items.Armor.Vanity
         public override string Texture => AssetDirectory.GetTexture<BasicCostume>();
 
         public override void SetStaticDefaults() =>
-            Tooltip.SetDefault("Turns the holder into the Basic Town NPC near town NPCs"); // Get DisplayName
+            Tooltip.SetDefault($"Turns the holder into the {ModContent.GetInstance<BasicTownNPC>().DisplayName.GetDefault()} near town NPCs"); // Doesn't work
 
         public override void SetDefaults()
         {
@@ -22,9 +23,6 @@ namespace SandboxMod.Content.Items.Armor.Vanity
             item.value      = Item.buyPrice(gold: 15);
             item.Size       = new Vector2(16, 16);
         }
-
-        public override bool IsVanitySet(int head, int body, int legs) =>
-            true;
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
@@ -36,14 +34,16 @@ namespace SandboxMod.Content.Items.Armor.Vanity
     }
 
     // Move into separate file
+    // Could probably be simplified
     public class BasicHead : EquipTexture
     {
         public override bool DrawHead() =>
             false;
 
-        public override void UpdateVanitySet(Player player)
+        // UpdateVanitySet() for the hell of it
+        public override void UpdateVanity(Player player, EquipType type)
         {
-            if (Main.rand.NextBool(20))
+            if (Main.rand.NextBool(120))
                 Dust.NewDust(player.position, player.width, player.height, ModContent.DustType<BasicDust>());
         }
     }

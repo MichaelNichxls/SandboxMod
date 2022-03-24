@@ -105,7 +105,7 @@ namespace SandboxMod.Content.Tiles
                 // Have an overload for AssetDirectory.GetTexture<T>() return Texture2D
                 // Maybe make an AssetDirectory.GetFlameTexture<T>() method for the hell of it
                 spriteBatch.Draw(
-                    ModContent.GetTexture(AssetDirectory.GetTexture<BasicTorch>() + "_Flame"),
+                    ModContent.GetTexture($"{AssetDirectory.GetTexture<BasicTorch>()}_Flame"),
                     new Vector2((i * 16) - (int)Main.screenPosition.X + x - ((width - 16f) / 2f), (j * 16) - (int)Main.screenPosition.Y + y + offsetY) + zero,
                     new Rectangle(tile.frameX, tile.frameY, width, height),
                     new Color(100, 100, 100, 0));

@@ -1,4 +1,5 @@
 using SandboxMod.Common.Extensions;
+using SandboxMod.Content.Items.Armor.Vanity;
 using SandboxMod.Content.Tiles;
 using Terraria;
 using Terraria.ID;
@@ -9,6 +10,20 @@ namespace SandboxMod
 {
     public partial class SandboxMod : Mod
     {
+        // Make ILoadable
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                var basicCostume = ModContent.GetInstance<BasicCostume>();
+
+                // no
+                AddEquipTexture(new BasicHead(), basicCostume, EquipType.Head, basicCostume.Name, $"{basicCostume.Texture}_Head");
+                AddEquipTexture(new BasicBody(), basicCostume, EquipType.Body, basicCostume.Name, $"{basicCostume.Texture}_Body", $"{basicCostume.Texture}_Arms");
+                AddEquipTexture(new BasicLegs(), basicCostume, EquipType.Legs, basicCostume.Name, $"{basicCostume.Texture}_Legs");
+            }
+        }
+
         public override void AddRecipes()
         {
             #region Pre-Hardmode Ores

@@ -29,22 +29,11 @@ namespace SandboxMod.Common.Players
         {
             if ((BlockyPower || BlockyForceVanity) && !BlockyHideVanity)
             {
-                // Get internal names
-                player.head = mod.GetEquipSlot("BasicHead", EquipType.Head);
-                player.body = mod.GetEquipSlot("BasicBody", EquipType.Body);
-                player.legs = mod.GetEquipSlot("BasicLegs", EquipType.Legs);
-            }
-        }
+                var basicCostume = ModContent.GetInstance<BasicCostume>();
 
-        public override void ModifyDrawInfo(ref PlayerDrawInfo drawInfo)
-        {
-            if ((BlockyPower || BlockyForceVanity) && !BlockyHideVanity)
-            {
-                player.headRotation = player.velocity.Y * player.direction * 0.1f;
-                player.headRotation = Utils.Clamp(player.headRotation, -0.3f, 0.3f);
-
-                //if (player.InModBiome(ModContent.GetInstance<ExampleSurfaceBiome>()))
-                //    player.headRotation = (float)Main.time * player.direction * 0.1f;
+                player.head = mod.GetEquipSlot(basicCostume.Name, EquipType.Head);
+                player.body = mod.GetEquipSlot(basicCostume.Name, EquipType.Body);
+                player.legs = mod.GetEquipSlot(basicCostume.Name, EquipType.Legs);
             }
         }
 
@@ -61,6 +50,7 @@ namespace SandboxMod.Common.Players
             // Make 13 and/or 18 const?
             for (int i = 13; i < 18 + player.extraAccessorySlots; i++)
             {
+                // I should just inline these
                 Item armor = player.armor[i];
 
                 if (armor.type == ModContent.ItemType<BasicCostume>())
@@ -71,8 +61,7 @@ namespace SandboxMod.Common.Players
             }
         }
 
-        public override bool PreHurt(
-            bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
+        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
             ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
             if (BlockyAccessory)
