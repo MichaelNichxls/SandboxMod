@@ -8,7 +8,7 @@ namespace SandboxMod.Content.Projectiles.Ammo
 {
     public class BasicBullet : ModProjectile
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicBullet>();
+        public override string Texture => Assets.GetTexture<BasicBullet>();
 
         public override void SetStaticDefaults()
         {

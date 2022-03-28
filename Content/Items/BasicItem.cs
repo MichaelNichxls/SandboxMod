@@ -9,7 +9,7 @@ namespace SandboxMod.Content.Items
     // Rename to BasicMaterial?
     public class BasicItem : ModItem
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicItem>();
+        public override string Texture => Assets.GetTexture<BasicItem>();
 
         public override void SetStaticDefaults() =>
             Tooltip.SetDefault("A basic item");

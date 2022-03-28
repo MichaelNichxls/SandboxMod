@@ -13,7 +13,7 @@ namespace SandboxMod.Content.Tiles
     {
         public override bool Autoload(ref string name, ref string texture)
         {
-            texture = AssetDirectory.GetTexture<BasicTorch>();
+            texture = Assets.GetTexture<BasicTorch>();
             return base.Autoload(ref name, ref texture);
         }
 
@@ -102,10 +102,8 @@ namespace SandboxMod.Content.Tiles
                 float x = Utils.RandomInt(ref seed, -10, 11) * 0.15f;
                 float y = Utils.RandomInt(ref seed, -10, 1) * 0.35f;
 
-                // Have an overload for AssetDirectory.GetTexture<T>() return Texture2D
-                // Maybe make an AssetDirectory.GetFlameTexture<T>() method for the hell of it
                 spriteBatch.Draw(
-                    ModContent.GetTexture($"{AssetDirectory.GetTexture<BasicTorch>()}_Flame"),
+                    ModContent.GetTexture($"{Assets.GetTexture<BasicTorch>()}_Flame"),
                     new Vector2((i * 16) - (int)Main.screenPosition.X + x - ((width - 16f) / 2f), (j * 16) - (int)Main.screenPosition.Y + y + offsetY) + zero,
                     new Rectangle(tile.frameX, tile.frameY, width, height),
                     new Color(100, 100, 100, 0));

@@ -8,7 +8,7 @@ namespace SandboxMod.Content.Items.Tools
 {
     public class BasicPickaxe : ModItem
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicPickaxe>();
+        public override string Texture => Assets.GetTexture<BasicPickaxe>();
 
         public override void SetStaticDefaults() =>
             Tooltip.SetDefault("Able to mine Hellstone"

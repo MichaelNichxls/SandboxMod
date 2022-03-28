@@ -8,7 +8,7 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
 {
     public class BasicWorkBench : ModItem
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicWorkBench>();
+        public override string Texture => Assets.GetTexture<BasicWorkBench>();
 
         public override void SetStaticDefaults() =>
             Tooltip.SetDefault("A basic work bench used for basic crafting");

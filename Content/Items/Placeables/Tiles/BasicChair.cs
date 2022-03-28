@@ -8,7 +8,7 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
 {
     public class BasicChair : ModItem
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicChair>();
+        public override string Texture => Assets.GetTexture<BasicChair>();
 
         public override void SetStaticDefaults() =>
             Tooltip.SetDefault("A basic chair");

@@ -8,7 +8,7 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
 {
     public class MaterialTransmuter : ModItem
     {
-        public override string Texture => AssetDirectory.GetTexture<MaterialTransmuter>();
+        public override string Texture => Assets.GetTexture<MaterialTransmuter>();
 
         public override void SetStaticDefaults() =>
             Tooltip.SetDefault("Allows for transmutation of materials into their counterparts");

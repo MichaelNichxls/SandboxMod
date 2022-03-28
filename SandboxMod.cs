@@ -1,6 +1,9 @@
 using SandboxMod.Common.Extensions;
-using SandboxMod.Content.Items.Armor.Vanity;
+using SandboxMod.Common.Loaders;
 using SandboxMod.Content.Tiles;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -10,18 +13,42 @@ namespace SandboxMod
 {
     public partial class SandboxMod : Mod
     {
-        // Make ILoadable
+        private List<ILoadable> _loaderCache;
+
+        public static SandboxMod Instance { get; private set; }
+
+        public SandboxMod()
+            => Instance = this;
+
         public override void Load()
         {
-            if (!Main.dedServ)
-            {
-                var basicCostume = ModContent.GetInstance<BasicCostume>();
+            _loaderCache = new List<ILoadable>();
 
-                // no
-                AddEquipTexture(new BasicHead(), basicCostume, EquipType.Head, basicCostume.Name, $"{basicCostume.Texture}_Head");
-                AddEquipTexture(new BasicBody(), basicCostume, EquipType.Body, basicCostume.Name, $"{basicCostume.Texture}_Body", $"{basicCostume.Texture}_Arms");
-                AddEquipTexture(new BasicLegs(), basicCostume, EquipType.Legs, basicCostume.Name, $"{basicCostume.Texture}_Legs");
+            // Make into private method, maybe
+            foreach (Type type in Code.GetTypes())
+            {
+                if (type.GetInterfaces().Contains(typeof(ILoadable)))
+                {
+                    var loader = (ILoadable)Activator.CreateInstance(type);
+                    _loaderCache.Add(loader);
+                }
             }
+
+            _loaderCache.Sort((x, y) => x.Priority > y.Priority ? 1 : -1);
+
+            foreach (ILoadable loader in _loaderCache)
+                loader.Load();
+        }
+
+        public override void Unload()
+        {
+            foreach (ILoadable loader in _loaderCache)
+                loader.Unload();
+
+            _loaderCache = null;
+
+            if (!Main.dedServ)
+                Instance = null;
         }
 
         public override void AddRecipes()

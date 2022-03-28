@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using SandboxMod.Common;
 using SandboxMod.Content.Dusts;
-using SandboxMod.Content.Items.Armor.Vanity;
+using SandboxMod.Content.Items.Accessories;
 using SandboxMod.Content.Tiles;
 using SandboxMod.Content.Walls;
 using System;
@@ -17,7 +17,7 @@ namespace SandboxMod.Content.NPCs.Town
     [AutoloadHead]
     public class BasicTownNPC : ModNPC
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicTownNPC>();
+        public override string Texture => Assets.GetTexture<BasicTownNPC>();
         //public override string[] AltTextures => new string[] { Texture + "_Alt_1" };
 
         public override void SetStaticDefaults()
@@ -67,8 +67,15 @@ namespace SandboxMod.Content.NPCs.Town
                     continue;
 
                 // Create using
-                if (player.inventory.Any(item => item.type == ModContent.ItemType<Items.Placeables.Tiles.BasicTile>()))
+                if (player.inventory.Any(item => item.type == ModContent.ItemType<Items.Placeables.Tiles.BasicTile>()
+                    || item.type == ModContent.ItemType<Items.Placeables.Tiles.BasicChair>()
+                    || item.type == ModContent.ItemType<Items.Placeables.Tiles.BasicWorkBench>()
+                    || item.type == ModContent.ItemType<Items.Placeables.Tiles.BasicDoor>()
+                    || item.type == ModContent.ItemType<Items.Placeables.Tiles.BasicTorch>()
+                    || item.type == ModContent.ItemType<Items.Placeables.Walls.BasicWall>()))
+                {
                     return true;
+                }
             }
 
             return false;
@@ -84,7 +91,8 @@ namespace SandboxMod.Content.NPCs.Town
                 {
                     Tile tile = Main.tile[x, y];
 
-                    // Create group
+                    // Create group lmao
+                    // Change to && ?
                     if (tile.type == ModContent.TileType<BasicTile>()
                         || tile.type == ModContent.TileType<BasicChair>()
                         || tile.type == ModContent.TileType<BasicWorkBench>()

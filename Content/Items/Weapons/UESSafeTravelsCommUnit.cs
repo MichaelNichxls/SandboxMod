@@ -9,7 +9,7 @@ namespace SandboxMod.Content.Items.Weapons
 {
     public class UESSafeTravelsCommUnit : ModItem
     {
-        public override string Texture => AssetDirectory.GetTexture<UESSafeTravelsCommUnit>();
+        public override string Texture => Assets.GetTexture<UESSafeTravelsCommUnit>();
 
         public override void SetStaticDefaults()
         {

@@ -9,7 +9,7 @@ namespace SandboxMod.Content.Dusts
     {
         public override bool Autoload(ref string name, ref string texture)
         {
-            texture = AssetDirectory.GetTexture<BasicDust>();
+            texture = Assets.GetTexture<BasicDust>();
             return base.Autoload(ref name, ref texture);
         }
 

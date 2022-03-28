@@ -10,7 +10,7 @@ namespace SandboxMod.Content.Tiles
     {
         public override bool Autoload(ref string name, ref string texture)
         {
-            texture = AssetDirectory.GetTexture<BasicTile>();
+            texture = Assets.GetTexture<BasicTile>();
             return base.Autoload(ref name, ref texture);
         }
 

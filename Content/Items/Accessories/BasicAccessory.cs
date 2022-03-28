@@ -8,7 +8,7 @@ namespace SandboxMod.Content.Items.Accessories
 {
     public class BasicAccessory : ModItem
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicAccessory>();
+        public override string Texture => Assets.GetTexture<BasicAccessory>();
 
         public override void SetStaticDefaults() =>
             Tooltip.SetDefault("4 defense"

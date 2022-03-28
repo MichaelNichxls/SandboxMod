@@ -9,7 +9,7 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
 {
     public class BasicTorch : ModItem
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicTorch>();
+        public override string Texture => Assets.GetTexture<BasicTorch>();
 
         public override void SetStaticDefaults() =>
             Tooltip.SetDefault("A basic torch that provides light");

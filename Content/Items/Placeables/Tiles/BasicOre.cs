@@ -8,7 +8,7 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
 {
     public class BasicOre : ModItem
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicOre>();
+        public override string Texture => Assets.GetTexture<BasicOre>();
 
         public override void SetStaticDefaults() =>
             Tooltip.SetDefault("A basic ore");

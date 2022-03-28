@@ -10,7 +10,7 @@ namespace SandboxMod.Content.Buffs
     {
         public override bool Autoload(ref string name, ref string texture)
         {
-            texture = AssetDirectory.GetTexture<BasicCostumeBuff>();
+            texture = Assets.GetTexture<BasicCostumeBuff>();
             return base.Autoload(ref name, ref texture);
         }
 
@@ -18,7 +18,7 @@ namespace SandboxMod.Content.Buffs
         {
             DisplayName.SetDefault("Basic Costume Buff");
             Description.SetDefault("Greatly increases jump speed and fall resistance"
-                + $"\nOccasionally grants the player a {ModContent.GetInstance<BasicTile>().DisplayName.GetDefault()}");
+                + "\nOccasionally grants the player a Basic Tile");
 
             Main.debuff[Type]               = true;
             Main.buffNoSave[Type]           = true;
@@ -27,14 +27,14 @@ namespace SandboxMod.Content.Buffs
             canBeCleared = false;
         }
 
+        // Change how this is worked out later
         public override void Update(Player player, ref int buffIndex)
         {
-            var costumePlayer = player.GetModPlayer<CostumePlayer>();
+            var costumePlayer = player.GetModPlayer<BasicCostumePlayer>();
 
-            // BlockyAccessoryPrevious is used here instead of BlockyAccessory because UpdateBuffs happens before UpdateEquips but after ResetEffects.
-            if (player.townNPCs >= 1 && costumePlayer.BlockyAccessoryPrevious)
+            if (costumePlayer.HasAccessoryEquippedPrevious && costumePlayer.BuffPredicate())
             {
-                costumePlayer.BlockyPower = true;
+                costumePlayer.HasBuff = true;
 
                 player.jumpSpeedBoost   += 5f;
                 player.extraFall        += 30;

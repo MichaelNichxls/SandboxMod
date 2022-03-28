@@ -9,7 +9,7 @@ namespace SandboxMod.Content.Items.Armor
     [AutoloadEquip(EquipType.Body)]
     public class BasicBreastplate : ModItem
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicBreastplate>();
+        public override string Texture => Assets.GetTexture<BasicBreastplate>();
 
         public override void SetStaticDefaults() =>
             Tooltip.SetDefault("A basic breastplate");

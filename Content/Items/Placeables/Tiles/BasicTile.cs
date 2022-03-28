@@ -7,7 +7,7 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
 {
     public class BasicTile : ModItem
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicTile>();
+        public override string Texture => Assets.GetTexture<BasicTile>();
 
         public override void SetStaticDefaults() =>
             Tooltip.SetDefault("A basic tile");

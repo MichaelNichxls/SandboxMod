@@ -8,7 +8,7 @@ namespace SandboxMod.Content.Items.Weapons
 {
     public class BasicBow : ModItem
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicBow>();
+        public override string Texture => Assets.GetTexture<BasicBow>();
 
         public override void SetStaticDefaults() =>
             Tooltip.SetDefault("A basic bow");

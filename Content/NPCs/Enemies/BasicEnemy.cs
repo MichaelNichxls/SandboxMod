@@ -8,7 +8,7 @@ namespace SandboxMod.Content.NPCs.Enemies
 {
     public class BasicEnemy : ModNPC
     {
-        public override string Texture => AssetDirectory.GetTexture<BasicEnemy>();
+        public override string Texture => Assets.GetTexture<BasicEnemy>();
 
         public override void SetStaticDefaults() =>
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Zombie];
