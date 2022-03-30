@@ -1,8 +1,9 @@
 ﻿using SandboxMod.Content.Items.Accessories;
+using SandboxMod.Content.NPCs.Town;
 using System;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace SandboxMod.Common.Players
 {
@@ -22,7 +23,21 @@ namespace SandboxMod.Common.Players
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
             if (IsActive)
-                Main.PlaySound(SoundID.NPCHit, player.position);
+                Main.PlaySound(ModContent.GetInstance<BasicTownNPC>().npc.HitSound, player.position);
+        }
+
+        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+            if (IsActive)
+                playSound = false;
+
+            return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
+        }
+
+        public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
+        {
+            if (IsActive)
+                Main.PlaySound(ModContent.GetInstance<BasicTownNPC>().npc.DeathSound, player.position);
         }
     }
 }

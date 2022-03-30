@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace SandboxMod.Common.Loaders
 {
+    // internal?
     public class VanityAccessoryLoader : ILoadable
     {
         public float Priority => 1f;

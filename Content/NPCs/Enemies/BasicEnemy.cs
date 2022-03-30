@@ -15,13 +15,12 @@ namespace SandboxMod.Content.NPCs.Enemies
 
         public override void SetDefaults()
         {
+            // Helper getters
             npc.lifeMax         = 70;
             npc.damage          = 14;
             npc.defense         = 6;
             npc.knockBackResist = 0.5f;
             npc.value           = 80f;
-            // NOT: npc.Size = new Vector2(34, 46);
-            // Should have a consistent way of automatically getting Size, if possible
             npc.Size            = new Vector2(18, 40);
             npc.HitSound        = SoundID.NPCHit1;
             npc.DeathSound      = SoundID.NPCDeath2;
@@ -37,7 +36,7 @@ namespace SandboxMod.Content.NPCs.Enemies
         {
             for (int i = 0; i < 10; i++)
             {
-                var dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, Main.rand.Next(4) + DustID.Confetti);
+                var dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.Confetti + Main.rand.Next(4));
 
                 dust.velocity.X += Main.rand.NextFloat(-0.05f, 0.05f);
                 dust.velocity.Y += Main.rand.NextFloat(-0.05f, 0.05f);

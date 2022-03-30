@@ -27,7 +27,7 @@ namespace SandboxMod
             // Make into private method, maybe
             foreach (Type type in Code.GetTypes())
             {
-                if (type.GetInterfaces().Contains(typeof(ILoadable)))
+                if (type.GetInterfaces().Contains(typeof(ILoadable)) && !type.IsAbstract)
                 {
                     var loader = (ILoadable)Activator.CreateInstance(type);
                     _loaderCache.Add(loader);
@@ -39,6 +39,21 @@ namespace SandboxMod
             foreach (ILoadable loader in _loaderCache)
                 loader.Load();
         }
+
+        //private IEnumerable<ILoadable> GetModLoaders(/* Mod parameter */)
+        //{
+        //    foreach (Type type in Code.GetTypes())
+        //    {
+        //        if (type.GetInterfaces().Contains(typeof(ILoadable)) && !type.IsAbstract)
+        //        {
+        //            // Inline?
+        //            var loader = (ILoadable)Activator.CreateInstance(type);
+        //            yield return loader;
+        //        }
+        //    }
+
+        //    //_loaderCache.Sort((x, y) => x.Priority > y.Priority ? 1 : -1);
+        //}
 
         public override void Unload()
         {

@@ -18,7 +18,7 @@ namespace SandboxMod.Content.NPCs.Town
     public class BasicTownNPC : ModNPC
     {
         public override string Texture => Assets.GetTexture<BasicTownNPC>();
-        //public override string[] AltTextures => new string[] { Texture + "_Alt_1" };
+        public override string[] AltTextures => new string[] { Texture + "_Alt_1" };
 
         public override void SetStaticDefaults()
         {
@@ -26,13 +26,13 @@ namespace SandboxMod.Content.NPCs.Town
 
             Main.npcFrameCount[npc.type] = 25;
 
-            NPCID.Sets.ExtraFramesCount[npc.type]       = 9; // Generally for Town NPCs, but this is how the NPC does extra things such as sitting in a chair and talking to other NPCs.
+            NPCID.Sets.ExtraFramesCount[npc.type]       = 9;
             NPCID.Sets.AttackFrameCount[npc.type]       = 4;
-            NPCID.Sets.DangerDetectRange[npc.type]      = 700; // The amount of pixels away from the center of the npc that it tries to attack enemies.
+            NPCID.Sets.DangerDetectRange[npc.type]      = 700;
             NPCID.Sets.AttackType[npc.type]             = 0;
-            NPCID.Sets.AttackTime[npc.type]             = 90; // The amount of time it takes for the NPC's attack animation to be over once it starts.
+            NPCID.Sets.AttackTime[npc.type]             = 90;
             NPCID.Sets.AttackAverageChance[npc.type]    = 30;
-            NPCID.Sets.HatOffsetY[npc.type]             = 4; // For when a party is active, the party hat spawns at a Y offset.
+            NPCID.Sets.HatOffsetY[npc.type]             = 4;
         }
 
         public override void SetDefaults()
@@ -44,8 +44,8 @@ namespace SandboxMod.Content.NPCs.Town
             npc.defense         = 15;
             npc.knockBackResist = 0.5f;
             npc.Size            = new Vector2(18, 40);
-            npc.HitSound        = SoundID.NPCHit1;
-            npc.DeathSound      = SoundID.NPCDeath1;
+            npc.HitSound        = SoundID.NPCHit3;
+            npc.DeathSound      = SoundID.NPCDeath3;
             npc.aiStyle         = 7;
 
             animationType = NPCID.Guide;
@@ -158,6 +158,7 @@ namespace SandboxMod.Content.NPCs.Town
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
+            //
         }
 
         public override void NPCLoot() =>
@@ -168,59 +169,56 @@ namespace SandboxMod.Content.NPCs.Town
 
         public override void OnGoToStatue(bool toKingStatue)
         {
-            //if (Main.netMode == NetmodeID.Server)
-            //{
-            //    ModPacket packet = mod.GetPacket();
+            if (Main.netMode == NetmodeID.Server)
+            {
+                ModPacket packet = mod.GetPacket();
 
-            //    packet.Write((byte)SandboxMod.MessageType.ExampleTeleportToStatue);
-            //    packet.Write((byte)NPC.whoAmI);
-            //    packet.Send();
-            //}
-            //else
-            //{
-            //    StatueTeleport();
-            //}
+                packet.Write((byte)SandboxMod.MessageType.StatueTeleport);
+                packet.Write((byte)npc.whoAmI);
+                packet.Send();
+            }
+            else
+                StatueTeleport();
         }
 
-        //public void StatueTeleport()
-        //{
-        //    for (int i = 0; i < 30; i++)
-        //    {
-        //        Vector2 position = Main.rand.NextVector2Square(-20, 21);
-        //        if (Math.Abs(position.X) > Math.Abs(position.Y))
-        //        {
-        //            position.X = Math.Sign(position.X) * 20;
-        //        }
-        //        else
-        //        {
-        //            position.Y = Math.Sign(position.Y) * 20;
-        //        }
-        //        Dust.NewDustPerfect(npc.Center + position, ModContent.DustType<BasicDust>(), Vector2.Zero).noGravity = true;
-        //    }
-        //}
+        public void StatueTeleport()
+        {
+            for (int i = 0; i < 15; i++)
+            {
+                Vector2 position = Main.rand.NextVector2Square(-20, 21);
+
+                if (Math.Abs(position.X) > Math.Abs(position.Y))
+                    position.X = Math.Sign(position.X) * 20;
+                else
+                    position.Y = Math.Sign(position.Y) * 20;
+
+                Vector2 velocity = new Vector2(Utils.Clamp(position.X, -1, 1) + Main.rand.NextFloat(-0.75f, 0.75f), Utils.Clamp(position.Y, -1, 1) + Main.rand.NextFloat(-0.75f, 0.75f));
+                Dust.NewDustPerfect(npc.Center + position, ModContent.DustType<BasicDust>(), velocity);
+            }
+        }
 
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)
         {
-            //damage = 20;
-            //knockback = 4f;
+            damage      = 20;
+            knockback   = 4f;
         }
 
         public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
         {
-            //cooldown = 30;
-            //randExtraCooldown = 30;
+            cooldown            = 30;
+            randExtraCooldown   = 30;
         }
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
-            //projType = ModContent.ProjectileType<SparklingBall>();
-            //attackDelay = 1;
+            //projType    = ModContent.ProjectileType<SparklingBall>();
+            attackDelay = 1;
         }
 
         public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)
         {
-            //multiplier = 12f;
-            //randomOffset = 2f;
+            multiplier      = 12f;
+            randomOffset    = 2f;
         }
     }
 }
