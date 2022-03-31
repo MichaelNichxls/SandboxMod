@@ -2,6 +2,7 @@
 using SandboxMod.Common;
 using SandboxMod.Content.Dusts;
 using SandboxMod.Content.Items.Accessories;
+using SandboxMod.Content.Projectiles.NPCs.Town;
 using SandboxMod.Content.Tiles;
 using SandboxMod.Content.Walls;
 using System;
@@ -211,7 +212,7 @@ namespace SandboxMod.Content.NPCs.Town
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
-            //projType    = ModContent.ProjectileType<SparklingBall>();
+            projType    = ModContent.ProjectileType<BasicProjectile>();
             attackDelay = 1;
         }
 
