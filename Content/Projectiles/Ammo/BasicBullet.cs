@@ -12,8 +12,8 @@ namespace SandboxMod.Content.Projectiles.Ammo
 
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;
             ProjectileID.Sets.TrailingMode[projectile.type]     = 0;
+            ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;
         }
 
         public override void SetDefaults()
