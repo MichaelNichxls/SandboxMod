@@ -60,7 +60,7 @@ namespace SandboxMod.Content.NPCs.Town
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-            for (int i = 0; i < 255; i++)
+            for (int i = 0; i < byte.MaxValue; i++)
             {
                 Player player = Main.player[i];
 
@@ -219,7 +219,7 @@ namespace SandboxMod.Content.NPCs.Town
         public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)
         {
             multiplier      = 12f;
-            randomOffset    = 1f; //
+            randomOffset    = 1f;
         }
     }
 }

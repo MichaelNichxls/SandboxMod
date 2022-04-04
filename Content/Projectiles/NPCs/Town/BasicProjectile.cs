@@ -12,8 +12,6 @@ namespace SandboxMod.Content.Projectiles.NPCs.Town
     {
         public override string Texture => Assets.GetTexture<BasicProjectile>();
 
-        // Add TrailCacheLength?
-
         public override void SetDefaults()
         {
             projectile.magic        = true;
@@ -24,52 +22,63 @@ namespace SandboxMod.Content.Projectiles.NPCs.Town
             projectile.light        = 0.5f;
         }
 
-        // Add rotation?
         public override void AI()
         {
-            projectile.velocity.Y += projectile.ai[0];
+            projectile.velocity.Y       += projectile.ai[0];
+            projectile.spriteDirection  = projectile.direction = (projectile.velocity.X > 0).ToDirectionInt();
+            projectile.rotation         = projectile.velocity.ToRotation() + (projectile.spriteDirection == 1 ? 0f : MathHelper.Pi);
 
-            if (Main.rand.NextBool(6))
-                Dust.NewDust(
-                    projectile.position + projectile.velocity,
-                    projectile.width,
-                    projectile.height,
-                    ModContent.DustType<BasicDust>(),
-                    projectile.velocity.X * 0.5f,
-                    projectile.velocity.Y * 0.5f);
+            //if (Main.rand.NextBool(6))
+            //    Dust.NewDust(
+            //        projectile.position + projectile.velocity,
+            //        projectile.width,
+            //        projectile.height,
+            //        ModContent.DustType<BasicDust>(),
+            //        projectile.velocity.X * 0.5f,
+            //        projectile.velocity.Y * 0.5f);
+        }
+
+        // Pre or Post
+        public override void PostAI()
+        {
+            for (int i = projectile.oldPos.Length - 1; i > 0; i--)
+            {
+                projectile.oldPos[i]                = projectile.oldPos[i - 1];
+                projectile.oldRot[i]                = projectile.oldRot[i - 1];
+                projectile.oldSpriteDirection[i]    = projectile.oldSpriteDirection[i - 1];
+            }
+
+            projectile.oldPos[0]                = projectile.position;
+            projectile.oldRot[0]                = projectile.rotation;
+            projectile.oldSpriteDirection[0]    = projectile.spriteDirection;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            DrawAfterimage(spriteBatch, Vector2.Zero, 0.75f, Color.White, Color.White * 0.1f, 1f, 0.5f);
-            return false;
+            DrawAfterimage(spriteBatch, Vector2.Zero, 0.5f, 0.1f, 1f, 0.5f);
+            return true;
         }
 
-        //public void DrawAfterimage(SpriteBatch spriteBatch, Vector2 offset, float trailLengthModifier, Color color, float opacity, float startScale, float endScale) =>
-        //    DrawAfterImage(spriteBatch, offset, trailLengthModifier, color, color, opacity, startScale, endScale);
+        //Main.projectileTexture[projectile.type].Width
 
-        // Make into helper method
-        // Draw afterimages behind each one another instead of in front
-        public void DrawAfterimage(SpriteBatch spriteBatch, Vector2 offset, float trailLength, Color startColor, Color endColor, float startScale, float endScale)
+        // DrawAfterimages()?
+        // Make into helper method, if that's even possible
+
+        // Add overload that takes in lightColor, or just Color
+        public void DrawAfterimage(SpriteBatch spriteBatch, Vector2 offset, float startOpacity, float endOpacity, float startScale, float endScale)
         {
-            // Make afterimageCount into param
-            for (int i = 0, afterimageCount = 5; i < afterimageCount; i++)
-            {
-                // projectile.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None // check
-                // Main.projectileTexture[projectile.type] ??
-
-                // Use newer methods for math
+            for (int afterimageCount = projectile.oldPos.Length, i = afterimageCount - 1; i >= 0; i--)
                 spriteBatch.Draw(
-                    ModContent.GetTexture(Texture),
-                    new Vector2(projectile.Center.X, projectile.Center.Y) + offset - Main.screenPosition + new Vector2(0, projectile.gfxOffY) - projectile.velocity * i * trailLength,
+                    ModContent.GetTexture($"{Texture}_Afterimage"),
+                    projectile.oldPos[i] - Main.screenPosition + (projectile.Size / 2f) + new Vector2(0, projectile.gfxOffY) + offset,
                     new Rectangle(0, 0, projectile.width, projectile.height),
-                    Color.Lerp(startColor, endColor, i / (float)afterimageCount),
-                    projectile.rotation,
+                    Lighting.GetColor((int)(projectile.oldPos[i].X + (projectile.width / 2f)) / 16, (int)(projectile.oldPos[i].Y + (projectile.height / 2f)) / 16)
+                        * MathHelper.Lerp(startOpacity, endOpacity, i / (float)(afterimageCount - 1)),
+                    projectile.oldRot[i],
                     projectile.Size / 2f,
-                    MathHelper.Lerp(startScale, endScale, i / (float)afterimageCount),
-                    SpriteEffects.None,
+                    MathHelper.Lerp(startScale, endScale, i / (float)(afterimageCount - 1)),
+                    projectile.oldSpriteDirection[i] == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally,
                     0f);
-            }
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
