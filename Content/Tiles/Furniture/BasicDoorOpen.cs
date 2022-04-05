@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using SandboxMod.Common;
 using SandboxMod.Content.Dusts;
-using SandboxMod.Content.Items.Placeables.Tiles;
+using SandboxMod.Content.Items.Placeables.Tiles.Furniture;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -9,7 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace SandboxMod.Content.Tiles
+namespace SandboxMod.Content.Tiles.Furniture
 {
     public class BasicDoorOpen : ModTile
     {
@@ -67,7 +67,7 @@ namespace SandboxMod.Content.Tiles
             num = 1;
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY) =>
-            Item.NewItem(new Vector2(i * 16, j * 16), new Vector2(32, 48), ModContent.ItemType<BasicDoor>());
+            Item.NewItem(new Vector2(i, j) * 16, new Vector2(32, 48), ModContent.ItemType<BasicDoor>());
 
         public override void MouseOver(int i, int j)
         {

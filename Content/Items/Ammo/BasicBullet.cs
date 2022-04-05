@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using SandboxMod.Common;
+﻿using SandboxMod.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,7 +26,7 @@ namespace SandboxMod.Content.Items.Ammo
             item.shootSpeed = 5.25f;
             item.rare       = ItemRarityID.Blue;
             item.value      = Item.sellPrice(copper: 20);
-            item.Size       = new Vector2(8, 8);
+            item.Size       = ModContent.GetTexture(Texture).Size();
             item.maxStack   = 999;
         }
 

@@ -1,6 +1,6 @@
 using SandboxMod.Common.Extensions;
 using SandboxMod.Common.Loaders;
-using SandboxMod.Content.Tiles;
+using SandboxMod.Content.Tiles.Furniture;
 using System;
 using System.Collections.Generic;
 using System.Linq;

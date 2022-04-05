@@ -1,5 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using SandboxMod.Common;
+﻿using SandboxMod.Common;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -18,7 +18,7 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
         {
             item.consumable     = true;
             item.createTile     = ModContent.TileType<ModTiles.BasicTile>();
-            item.Size           = new Vector2(16, 16);
+            item.Size           = ModContent.GetTexture(Texture).Size();
             item.maxStack       = 999;
             item.useTime        = 10;
             item.useAnimation   = 15;

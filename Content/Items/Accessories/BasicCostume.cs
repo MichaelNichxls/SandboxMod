@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using SandboxMod.Common;
+﻿using SandboxMod.Common;
 using SandboxMod.Common.Players;
 using SandboxMod.Content.Buffs;
 using Terraria;
@@ -25,7 +24,7 @@ namespace SandboxMod.Content.Items.Accessories
             item.accessory  = true;
             item.buffType   = ModContent.BuffType<BasicCostumeBuff>();
             item.rare       = ItemRarityID.Pink;
-            item.Size       = new Vector2(16, 16);
+            item.Size       = ModContent.GetTexture(Texture).Size();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

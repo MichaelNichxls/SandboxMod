@@ -1,12 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using SandboxMod.Common;
+﻿using SandboxMod.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 using ModTiles = SandboxMod.Content.Tiles;
 
-namespace SandboxMod.Content.Items.Placeables.Tiles
+namespace SandboxMod.Content.Items.Placeables.Tiles.Furniture
 {
     public class BasicDoor : ModItem
     {
@@ -18,9 +17,9 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
         public override void SetDefaults()
         {
             item.consumable     = true;
-            item.createTile     = ModContent.TileType<ModTiles.BasicDoorClosed>();
+            item.createTile     = ModContent.TileType<ModTiles.Furniture.BasicDoorClosed>();
             item.value          = Item.sellPrice(copper: 40);
-            item.Size           = new Vector2(18, 32);
+            item.Size           = ModContent.GetTexture(Texture).Size();
             item.maxStack       = 99;
             item.useTime        = 10;
             item.useAnimation   = 15;

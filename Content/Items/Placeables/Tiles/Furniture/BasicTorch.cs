@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 using ModTiles = SandboxMod.Content.Tiles;
 
-namespace SandboxMod.Content.Items.Placeables.Tiles
+namespace SandboxMod.Content.Items.Placeables.Tiles.Furniture
 {
     public class BasicTorch : ModItem
     {
@@ -21,9 +21,9 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
             item.consumable     = true;
             item.flame          = true;
             item.noWet          = true;
-            item.createTile     = ModContent.TileType<ModTiles.BasicTorch>();
+            item.createTile     = ModContent.TileType<ModTiles.Furniture.BasicTorch>();
             item.value          = Item.sellPrice(copper: 10);
-            item.Size           = new Vector2(14, 16);
+            item.Size           = ModContent.GetTexture(Texture).Size();
             item.maxStack       = 99;
             item.useTime        = 10;
             item.useAnimation   = 15;

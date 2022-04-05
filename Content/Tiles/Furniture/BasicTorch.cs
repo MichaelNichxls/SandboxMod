@@ -9,7 +9,7 @@ using Terraria.ObjectData;
 
 using ModTileItems = SandboxMod.Content.Items.Placeables.Tiles;
 
-namespace SandboxMod.Content.Tiles
+namespace SandboxMod.Content.Tiles.Furniture
 {
     public class BasicTorch : ModTile
     {
@@ -30,7 +30,7 @@ namespace SandboxMod.Content.Tiles
 
             TileID.Sets.FramesOnKillWall[Type] = true;
 
-            drop                = ModContent.ItemType<ModTileItems.BasicTorch>();
+            drop                = ModContent.ItemType<ModTileItems.Furniture.BasicTorch>();
             dustType            = ModContent.DustType<BasicDust>();
             adjTiles            = new int[] { TileID.Torches };
             torch               = true;
@@ -65,7 +65,7 @@ namespace SandboxMod.Content.Tiles
 
             player.noThrow          = 2;
             player.showItemIcon     = true;
-            player.showItemIcon2    = ModContent.ItemType<ModTileItems.BasicTorch>();
+            player.showItemIcon2    = ModContent.ItemType<ModTileItems.Furniture.BasicTorch>();
         }
 
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height) =>

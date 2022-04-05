@@ -71,10 +71,10 @@ namespace SandboxMod.Content.NPCs.Town
                     continue;
 
                 if (player.inventory.Any(item => item.type == ModContent.ItemType<ModTileItems.BasicTile>()
-                    || item.type == ModContent.ItemType<ModTileItems.BasicChair>()
-                    || item.type == ModContent.ItemType<ModTileItems.BasicWorkBench>()
-                    || item.type == ModContent.ItemType<ModTileItems.BasicDoor>()
-                    || item.type == ModContent.ItemType<ModTileItems.BasicTorch>()
+                    || item.type == ModContent.ItemType<ModTileItems.Furniture.BasicChair>()
+                    || item.type == ModContent.ItemType<ModTileItems.Furniture.BasicWorkBench>()
+                    || item.type == ModContent.ItemType<ModTileItems.Furniture.BasicDoor>()
+                    || item.type == ModContent.ItemType<ModTileItems.Furniture.BasicTorch>()
                     || item.type == ModContent.ItemType<ModWallItems.BasicWall>()))
                 {
                     return true;
@@ -97,11 +97,11 @@ namespace SandboxMod.Content.NPCs.Town
 
                     // Change to && ?
                     if (tile.type == ModContent.TileType<ModTiles.BasicTile>()
-                        || tile.type == ModContent.TileType<ModTiles.BasicChair>()
-                        || tile.type == ModContent.TileType<ModTiles.BasicWorkBench>()
-                        || tile.type == ModContent.TileType<ModTiles.BasicDoorOpen>()
-                        || tile.type == ModContent.TileType<ModTiles.BasicDoorClosed>()
-                        || tile.type == ModContent.TileType<ModTiles.BasicTorch>()
+                        || tile.type == ModContent.TileType<ModTiles.Furniture.BasicChair>()
+                        || tile.type == ModContent.TileType<ModTiles.Furniture.BasicWorkBench>()
+                        || tile.type == ModContent.TileType<ModTiles.Furniture.BasicDoorOpen>()
+                        || tile.type == ModContent.TileType<ModTiles.Furniture.BasicDoorClosed>()
+                        || tile.type == ModContent.TileType<ModTiles.Furniture.BasicTorch>()
                         || tile.wall == ModContent.WallType<ModWalls.BasicWall>())
                     {
                         score++;
@@ -162,10 +162,10 @@ namespace SandboxMod.Content.NPCs.Town
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ModTileItems.BasicChair>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ModTileItems.BasicWorkBench>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ModTileItems.BasicDoor>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ModTileItems.BasicTorch>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ModTileItems.Furniture.BasicChair>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ModTileItems.Furniture.BasicWorkBench>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ModTileItems.Furniture.BasicDoor>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ModTileItems.Furniture.BasicTorch>());
         }
 
         public override void NPCLoot() =>

@@ -1,5 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using SandboxMod.Common;
+﻿using SandboxMod.Common;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -18,7 +18,7 @@ namespace SandboxMod.Content.Items.Placeables.Walls
         {
             item.consumable     = true;
             item.createWall     = ModContent.WallType<ModWalls.BasicWall>();
-            item.Size           = new Vector2(16, 16);
+            item.Size           = ModContent.GetTexture(Texture).Size();
             item.maxStack       = 999;
             item.useTime        = 7;
             item.useAnimation   = 15;
