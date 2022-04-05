@@ -40,6 +40,8 @@ namespace SandboxMod
                 loader.Load();
         }
 
+        // Do after you make the UILoader
+
         //private IEnumerable<ILoadable> GetModLoaders(/* Mod parameter */)
         //{
         //    foreach (Type type in Code.GetTypes())

@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace SandboxMod.Content.NPCs.Enemies
 {
+    // Make vanilla zombies wear party hats during a party
     public class BasicEnemy : ModNPC
     {
         public override string Texture => Assets.GetTexture<BasicEnemy>();
@@ -34,7 +35,7 @@ namespace SandboxMod.Content.NPCs.Enemies
         
         public override void HitEffect(int hitDirection, double damage)
         {
-            for (int i = 0; i < 10; i++)
+            for (int k = 0; k < 10; k++)
             {
                 var dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.Confetti + Main.rand.Next(4));
 

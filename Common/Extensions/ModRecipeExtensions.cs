@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -12,17 +11,9 @@ namespace SandboxMod.Common.Extensions
         // Make recipe.SetResult() capable of returning more than 1 ingredient, as well as recipe groups
         public static void AddBidirectionalRecipe(this ModRecipe recipe)
         {
-            IEnumerable<int> tiles =
-                from tile in recipe.requiredTile
-                where tile != -1
-                select tile;
-
-            IEnumerable<Item> ingredients =
-                from ingredient in recipe.requiredItem
-                where ingredient.type != ItemID.None
-                select ingredient;
-
-            Item result = recipe.createItem;
+            var tiles       = recipe.requiredTile.Where(tile => tile != -1);
+            var ingredients = recipe.requiredItem.Where(ingredient => ingredient.type != ItemID.None);
+            Item result     = recipe.createItem;
 
             if (ingredients.Count() > 1)
                 throw new RecipeException();

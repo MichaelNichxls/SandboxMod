@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using ModTileItems = SandboxMod.Content.Items.Placeables.Tiles;
+
 namespace SandboxMod.Content.Tiles
 {
     public class BasicOre : ModTile
@@ -29,7 +31,7 @@ namespace SandboxMod.Content.Tiles
 
             minPick     = 65;
             mineResist  = 2.5f;
-            drop        = ModContent.ItemType<Items.Placeables.Tiles.BasicOre>();
+            drop        = ModContent.ItemType<ModTileItems.BasicOre>();
             dustType    = DustID.IceRod;
             soundType   = SoundID.Tink;
             soundStyle  = 1;

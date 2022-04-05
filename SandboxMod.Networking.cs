@@ -17,11 +17,14 @@ namespace SandboxMod
 
             switch (messageType)
             {
+                // Main.npc[reader.ReadByte()].modNPC
+
                 case MessageType.StatueTeleport:
-                    if (Main.npc[reader.ReadByte()].modNPC is BasicTownNPC basicTownNPC && basicTownNPC.npc.active)
+                    if (Main.npc[(byte)messageType].modNPC is BasicTownNPC basicTownNPC && basicTownNPC.npc.active)
                         basicTownNPC.StatueTeleport();
 
                     break;
+
                 default:
                     Logger.WarnFormat($"{Name}: Unknown message type: {messageType}");
                     break;

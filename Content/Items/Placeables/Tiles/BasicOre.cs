@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using ModTiles = SandboxMod.Content.Tiles;
+
 namespace SandboxMod.Content.Items.Placeables.Tiles
 {
     public class BasicOre : ModItem
@@ -16,7 +18,7 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
         public override void SetDefaults()
         {
             item.consumable     = true;
-            item.createTile     = ModContent.TileType<Content.Tiles.BasicOre>();
+            item.createTile     = ModContent.TileType<ModTiles.BasicOre>();
             item.rare           = ItemRarityID.Green;
             item.value          = Item.sellPrice(silver: 2, copper: 50);
             item.Size           = new Vector2(16, 16);

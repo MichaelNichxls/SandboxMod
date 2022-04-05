@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using ModTiles = SandboxMod.Content.Tiles;
+
 namespace SandboxMod.Content.Items.Placeables.Tiles
 {
     public class MaterialTransmuter : ModItem
@@ -16,7 +18,7 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
         public override void SetDefaults()
         {
             item.consumable     = true;
-            item.createTile     = ModContent.TileType<Content.Tiles.MaterialTransmuter>();
+            item.createTile     = ModContent.TileType<ModTiles.MaterialTransmuter>();
             item.value          = Item.sellPrice(gold: 1);
             item.Size           = new Vector2(38, 34);
             item.maxStack       = 99;

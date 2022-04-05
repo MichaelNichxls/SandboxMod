@@ -7,6 +7,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
+using ModTileItems = SandboxMod.Content.Items.Placeables.Tiles;
+
 namespace SandboxMod.Content.Tiles
 {
     public class BasicTorch : ModTile
@@ -28,7 +30,7 @@ namespace SandboxMod.Content.Tiles
 
             TileID.Sets.FramesOnKillWall[Type] = true;
 
-            drop                = ModContent.ItemType<Items.Placeables.Tiles.BasicTorch>();
+            drop                = ModContent.ItemType<ModTileItems.BasicTorch>();
             dustType            = ModContent.DustType<BasicDust>();
             adjTiles            = new int[] { TileID.Torches };
             torch               = true;
@@ -41,8 +43,7 @@ namespace SandboxMod.Content.Tiles
             AddMapEntry(new Color(255, 255, 255), name);
 
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleTorch);
-            // I don't understand why this doesn't work
-            //TileObjectData.newTile.WaterPlacement = Terraria.Enums.LiquidPlacement.NotAllowed;
+            //TileObjectData.newTile.WaterPlacement = Terraria.Enums.LiquidPlacement.NotAllowed; // Doesn't work
             TileObjectData.addTile(Type);
         }
 
@@ -54,7 +55,6 @@ namespace SandboxMod.Content.Tiles
             Tile tile = Main.tile[i, j];
 
             // Make a helper for getting frames
-            // Make a helper for the RGB scaling math, with an added brightness factor
             if (tile.frameX < 66)
                 (r, g, b) = (255f / byte.MaxValue, 255f / byte.MaxValue, 255f / byte.MaxValue);
         }
@@ -65,7 +65,7 @@ namespace SandboxMod.Content.Tiles
 
             player.noThrow          = 2;
             player.showItemIcon     = true;
-            player.showItemIcon2    = ModContent.ItemType<Items.Placeables.Tiles.BasicTorch>();
+            player.showItemIcon2    = ModContent.ItemType<ModTileItems.BasicTorch>();
         }
 
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height) =>
@@ -75,7 +75,6 @@ namespace SandboxMod.Content.Tiles
                     : 2
                 : 0;
 
-        // I don't even know
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
             Tile tile = Main.tile[i, j];
@@ -102,6 +101,7 @@ namespace SandboxMod.Content.Tiles
                 float x = Utils.RandomInt(ref seed, -10, 11) * 0.15f;
                 float y = Utils.RandomInt(ref seed, -10, 1) * 0.35f;
 
+                // Texture
                 spriteBatch.Draw(
                     ModContent.GetTexture($"{Assets.GetTexture<BasicTorch>()}_Flame"),
                     new Vector2((i * 16) - (int)Main.screenPosition.X + x - ((width - 16f) / 2f), (j * 16) - (int)Main.screenPosition.Y + y + offsetY) + zero,

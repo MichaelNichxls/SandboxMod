@@ -4,6 +4,8 @@ using SandboxMod.Content.Dusts;
 using Terraria;
 using Terraria.ModLoader;
 
+using ModTileItems = SandboxMod.Content.Items.Placeables.Tiles;
+
 namespace SandboxMod.Content.Tiles
 {
     public class BasicTile : ModTile
@@ -20,7 +22,7 @@ namespace SandboxMod.Content.Tiles
             Main.tileMergeDirt[Type]    = true;
             Main.tileBlockLight[Type]   = true;
 
-            drop        = ModContent.ItemType<Items.Placeables.Tiles.BasicTile>();
+            drop        = ModContent.ItemType<ModTileItems.BasicTile>();
             dustType    = ModContent.DustType<BasicDust>();
 
             AddMapEntry(new Color(245, 245, 245));

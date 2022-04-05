@@ -3,6 +3,8 @@ using SandboxMod.Common;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using ModWalls = SandboxMod.Content.Walls;
+
 namespace SandboxMod.Content.Items.Placeables.Walls
 {
     public class BasicWall : ModItem
@@ -15,7 +17,7 @@ namespace SandboxMod.Content.Items.Placeables.Walls
         public override void SetDefaults()
         {
             item.consumable     = true;
-            item.createWall     = ModContent.WallType<Content.Walls.BasicWall>();
+            item.createWall     = ModContent.WallType<ModWalls.BasicWall>();
             item.Size           = new Vector2(16, 16);
             item.maxStack       = 999;
             item.useTime        = 7;

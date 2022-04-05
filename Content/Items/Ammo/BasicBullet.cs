@@ -4,8 +4,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using ModProjectiles = SandboxMod.Content.Projectiles.Items.Ammo;
+
 namespace SandboxMod.Content.Items.Ammo
 {
+    // Rework a bit
     public class BasicBullet : ModItem
     {
         public override string Texture => Assets.GetTexture<BasicBullet>();
@@ -20,7 +23,7 @@ namespace SandboxMod.Content.Items.Ammo
             item.damage     = 11;
             item.knockBack  = 3.25f;
             item.ammo       = AmmoID.Bullet;
-            item.shoot      = ModContent.ProjectileType<Projectiles.Ammo.BasicBullet>();
+            item.shoot      = ModContent.ProjectileType<ModProjectiles.BasicBullet>();
             item.shootSpeed = 5.25f;
             item.rare       = ItemRarityID.Blue;
             item.value      = Item.sellPrice(copper: 20);

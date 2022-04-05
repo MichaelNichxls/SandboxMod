@@ -27,7 +27,7 @@ namespace SandboxMod.Content.Buffs
             canBeCleared = false;
         }
 
-        // Change how this is worked out later
+        // Change?
         public override void Update(Player player, ref int buffIndex)
         {
             var costumePlayer = player.GetModPlayer<BasicCostumePlayer>();

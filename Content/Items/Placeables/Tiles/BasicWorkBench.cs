@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using ModTiles = SandboxMod.Content.Tiles;
+
 namespace SandboxMod.Content.Items.Placeables.Tiles
 {
     public class BasicWorkBench : ModItem
@@ -16,7 +18,7 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
         public override void SetDefaults()
         {
             item.consumable     = true;
-            item.createTile     = ModContent.TileType<Content.Tiles.BasicWorkBench>();
+            item.createTile     = ModContent.TileType<ModTiles.BasicWorkBench>();
             item.value          = Item.sellPrice(copper: 30);
             item.Size           = new Vector2(32, 18);
             item.maxStack       = 99;

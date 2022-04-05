@@ -47,9 +47,9 @@ namespace SandboxMod.Common.Players
 
         public override void UpdateVanityAccessories()
         {
-            for (int i = 13; i < 18 + player.extraAccessorySlots; i++)
+            for (int k = 13; k < 18 + player.extraAccessorySlots; k++)
             {
-                if (player.armor[i].type == ModContent.ItemType<TModItem>())
+                if (player.armor[k].type == ModContent.ItemType<TModItem>())
                 {
                     HasVanityHidden = false;
                     HasVanityForced = true;

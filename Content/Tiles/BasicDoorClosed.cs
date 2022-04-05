@@ -76,7 +76,7 @@ namespace SandboxMod.Content.Tiles
         {
             Player player = Main.LocalPlayer;
 
-            player.noThrow          = 2; // What does this do?
+            player.noThrow          = 2; // ?
             player.showItemIcon     = true;
             player.showItemIcon2    = ModContent.ItemType<BasicDoor>();
         }

@@ -1,5 +1,6 @@
 ﻿using SandboxMod.Content.Items.Accessories;
 using System;
+using System.Linq;
 using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
@@ -13,21 +14,21 @@ namespace SandboxMod.Common.Loaders
 
         public void Load()
         {
-            // May make condition
+            // Make condition
             if (!Main.dedServ)
             {
                 foreach (Type type in SandboxMod.Instance.Code.GetTypes())
                 {
-                    if (type.IsSubclassOf(typeof(VanityAccessoryItem)) && !type.IsAbstract)
+                    if (type.IsSubclassOf(typeof(ModItem)) && type.GetInterfaces().Contains(typeof(IVanityAccessoryItem)) && !type.IsAbstract)
                     {
-                        var modItem = (VanityAccessoryItem)typeof(ModContent)
+                        var modItem = (ModItem)typeof(ModContent)
                             .GetMethod(nameof(ModContent.GetInstance), BindingFlags.Static | BindingFlags.Public)
                             .MakeGenericMethod(type)
                             .Invoke(null, null);
 
-                        SandboxMod.Instance.AddEquipTexture(modItem.Head, null, EquipType.Head, modItem.Name, $"{modItem.Texture}_Head");
-                        SandboxMod.Instance.AddEquipTexture(modItem.Body, null, EquipType.Body, modItem.Name, $"{modItem.Texture}_Body", $"{modItem.Texture}_Arms");
-                        SandboxMod.Instance.AddEquipTexture(modItem.Legs, null, EquipType.Legs, modItem.Name, $"{modItem.Texture}_Legs");
+                        SandboxMod.Instance.AddEquipTexture(((IVanityAccessoryItem)modItem).Head, null, EquipType.Head, modItem.Name, $"{modItem.Texture}_Head");
+                        SandboxMod.Instance.AddEquipTexture(((IVanityAccessoryItem)modItem).Body, null, EquipType.Body, modItem.Name, $"{modItem.Texture}_Body", $"{modItem.Texture}_Arms");
+                        SandboxMod.Instance.AddEquipTexture(((IVanityAccessoryItem)modItem).Legs, null, EquipType.Legs, modItem.Name, $"{modItem.Texture}_Legs");
                     }
                 }
             }

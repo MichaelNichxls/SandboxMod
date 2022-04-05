@@ -4,6 +4,8 @@ using SandboxMod.Content.Dusts;
 using Terraria;
 using Terraria.ModLoader;
 
+using ModWallItems = SandboxMod.Content.Items.Placeables.Walls;
+
 namespace SandboxMod.Content.Walls
 {
     public class BasicWall : ModWall
@@ -18,7 +20,7 @@ namespace SandboxMod.Content.Walls
         {
             Main.wallHouse[Type] = true;
 
-            drop        = ModContent.ItemType<Items.Placeables.Walls.BasicWall>();
+            drop        = ModContent.ItemType<ModWallItems.BasicWall>();
             dustType    = ModContent.DustType<BasicDust>();
 
             AddMapEntry(new Color(200, 200, 200));

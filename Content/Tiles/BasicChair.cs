@@ -7,6 +7,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
+using ModTileItems = SandboxMod.Content.Items.Placeables.Tiles;
+
 namespace SandboxMod.Content.Tiles
 {
     public class BasicChair : ModTile
@@ -48,6 +50,6 @@ namespace SandboxMod.Content.Tiles
             num = fail ? 1 : 3;
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY) =>
-            Item.NewItem(new Vector2(i * 16, j * 16), new Vector2(16, 32), ModContent.ItemType<Items.Placeables.Tiles.BasicChair>());
+            Item.NewItem(new Vector2(i * 16, j * 16), new Vector2(16, 32), ModContent.ItemType<ModTileItems.BasicChair>());
     }
 }

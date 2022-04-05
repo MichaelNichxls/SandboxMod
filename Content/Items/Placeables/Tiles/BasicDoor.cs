@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using ModTiles = SandboxMod.Content.Tiles;
+
 namespace SandboxMod.Content.Items.Placeables.Tiles
 {
     public class BasicDoor : ModItem
@@ -16,7 +18,7 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
         public override void SetDefaults()
         {
             item.consumable     = true;
-            item.createTile     = ModContent.TileType<Content.Tiles.BasicDoorClosed>();
+            item.createTile     = ModContent.TileType<ModTiles.BasicDoorClosed>();
             item.value          = Item.sellPrice(copper: 40);
             item.Size           = new Vector2(18, 32);
             item.maxStack       = 99;

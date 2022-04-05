@@ -17,7 +17,6 @@ namespace SandboxMod.Content.Items.Accessories
 
             public override void UpdateVanitySet(Player player)
             {
-                // Main.npc[reader.ReadByte()].modNPC ?
                 if (Main.rand.NextBool(120))
                     Dust.NewDust(player.position, player.width, player.height, ModContent.DustType<BasicDust>());
             }

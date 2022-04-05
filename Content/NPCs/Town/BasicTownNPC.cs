@@ -3,8 +3,6 @@ using SandboxMod.Common;
 using SandboxMod.Content.Dusts;
 using SandboxMod.Content.Items.Accessories;
 using SandboxMod.Content.Projectiles.NPCs.Town;
-using SandboxMod.Content.Tiles;
-using SandboxMod.Content.Walls;
 using System;
 using System.Linq;
 using Terraria;
@@ -13,13 +11,18 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
+using ModTileItems  = SandboxMod.Content.Items.Placeables.Tiles;
+using ModTiles      = SandboxMod.Content.Tiles;
+using ModWallItems  = SandboxMod.Content.Items.Placeables.Walls;
+using ModWalls      = SandboxMod.Content.Walls;
+
 namespace SandboxMod.Content.NPCs.Town
 {
     [AutoloadHead]
     public class BasicTownNPC : ModNPC
     {
         public override string Texture => Assets.GetTexture<BasicTownNPC>();
-        public override string[] AltTextures => new string[] { Texture + "_Alt_1" };
+        public override string[] AltTextures => new[] { $"{Texture}_Alt_1" };
 
         public override void SetStaticDefaults()
         {
@@ -54,26 +57,25 @@ namespace SandboxMod.Content.NPCs.Town
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            for (int i = 0; i < (npc.life > 0 ? 1 : 5); i++)
+            for (int k = 0; k < (npc.life > 0 ? 1 : 5); k++)
                 Dust.NewDust(npc.position, npc.width, npc.height, ModContent.DustType<BasicDust>());
         }
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-            for (int i = 0; i < byte.MaxValue; i++)
+            for (int k = 0; k < byte.MaxValue; k++)
             {
-                Player player = Main.player[i];
+                Player player = Main.player[k];
 
                 if (!player.active)
                     continue;
 
-                // Create using
-                if (player.inventory.Any(item => item.type == ModContent.ItemType<Items.Placeables.Tiles.BasicTile>()
-                    || item.type == ModContent.ItemType<Items.Placeables.Tiles.BasicChair>()
-                    || item.type == ModContent.ItemType<Items.Placeables.Tiles.BasicWorkBench>()
-                    || item.type == ModContent.ItemType<Items.Placeables.Tiles.BasicDoor>()
-                    || item.type == ModContent.ItemType<Items.Placeables.Tiles.BasicTorch>()
-                    || item.type == ModContent.ItemType<Items.Placeables.Walls.BasicWall>()))
+                if (player.inventory.Any(item => item.type == ModContent.ItemType<ModTileItems.BasicTile>()
+                    || item.type == ModContent.ItemType<ModTileItems.BasicChair>()
+                    || item.type == ModContent.ItemType<ModTileItems.BasicWorkBench>()
+                    || item.type == ModContent.ItemType<ModTileItems.BasicDoor>()
+                    || item.type == ModContent.ItemType<ModTileItems.BasicTorch>()
+                    || item.type == ModContent.ItemType<ModWallItems.BasicWall>()))
                 {
                     return true;
                 }
@@ -90,17 +92,17 @@ namespace SandboxMod.Content.NPCs.Town
             {
                 for (int y = top; y <= bottom; y++)
                 {
+                    // Move inside if-statement?
                     Tile tile = Main.tile[x, y];
 
-                    // Create group lmao
                     // Change to && ?
-                    if (tile.type == ModContent.TileType<BasicTile>()
-                        || tile.type == ModContent.TileType<BasicChair>()
-                        || tile.type == ModContent.TileType<BasicWorkBench>()
-                        || tile.type == ModContent.TileType<BasicDoorOpen>()
-                        || tile.type == ModContent.TileType<BasicDoorClosed>()
-                        || tile.type == ModContent.TileType<BasicTorch>()
-                        || tile.wall == ModContent.WallType<BasicWall>())
+                    if (tile.type == ModContent.TileType<ModTiles.BasicTile>()
+                        || tile.type == ModContent.TileType<ModTiles.BasicChair>()
+                        || tile.type == ModContent.TileType<ModTiles.BasicWorkBench>()
+                        || tile.type == ModContent.TileType<ModTiles.BasicDoorOpen>()
+                        || tile.type == ModContent.TileType<ModTiles.BasicDoorClosed>()
+                        || tile.type == ModContent.TileType<ModTiles.BasicTorch>()
+                        || tile.wall == ModContent.WallType<ModWalls.BasicWall>())
                     {
                         score++;
                     }
@@ -139,6 +141,7 @@ namespace SandboxMod.Content.NPCs.Town
                 new Tuple<string, double>("Am I a butterfly dreaming I'm a man? Or a bowling ball dreaming I'm a plate of sashimi? Never assume that what you see and feel is real.",           0.1)
             });
 
+            // Make extension
             if (NPC.FindFirstNPC(NPCID.PartyGirl) is var partyGirl && partyGirl >= 0)
                 chat.Add($"Can you please tell {Main.npc[partyGirl].GivenName} to stop decorating my house with colors?", 0.25);
 
@@ -159,7 +162,10 @@ namespace SandboxMod.Content.NPCs.Town
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            //
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ModTileItems.BasicChair>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ModTileItems.BasicWorkBench>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ModTileItems.BasicDoor>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ModTileItems.BasicTorch>());
         }
 
         public override void NPCLoot() =>
@@ -184,7 +190,7 @@ namespace SandboxMod.Content.NPCs.Town
 
         public void StatueTeleport()
         {
-            for (int i = 0; i < 15; i++)
+            for (int k = 0; k < 15; k++)
             {
                 Vector2 position = Main.rand.NextVector2Square(-20, 21);
 
@@ -207,7 +213,7 @@ namespace SandboxMod.Content.NPCs.Town
         public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
         {
             cooldown            = 30;
-            randExtraCooldown   = 30;
+            randExtraCooldown   = 20;
         }
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)

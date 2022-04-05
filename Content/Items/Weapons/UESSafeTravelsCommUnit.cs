@@ -21,10 +21,10 @@ namespace SandboxMod.Content.Items.Weapons
         {
             item.magic          = true;
             item.noMelee        = true;
-            item.damage         = 100; // ?
+            item.damage         = 100;
             item.mana           = 40;
             item.crit           = 4;
-            item.knockBack      = 6; // ?
+            item.knockBack      = 6;
             item.rare           = ItemRarityID.Red;
             item.value          = Item.sellPrice(gold: 12);
             item.Size           = new Vector2(54, 42);

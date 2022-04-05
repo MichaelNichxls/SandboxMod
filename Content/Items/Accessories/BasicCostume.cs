@@ -8,13 +8,13 @@ using Terraria.ModLoader;
 
 namespace SandboxMod.Content.Items.Accessories
 {
-    public partial class BasicCostume : VanityAccessoryItem
+    public partial class BasicCostume : ModItem, IVanityAccessoryItem
     {
         public override string Texture => Assets.GetTexture<BasicCostume>();
 
-        public override EquipTexture Head { get; } = new BasicCostumeHead();
-        public override EquipTexture Body { get; } = new BasicCostumeBody();
-        public override EquipTexture Legs { get; } = new BasicCostumeLegs();
+        public EquipTexture Head { get; } = new BasicCostumeHead();
+        public EquipTexture Body { get; } = new BasicCostumeBody();
+        public EquipTexture Legs { get; } = new BasicCostumeLegs();
 
         // I don't know a reliable way of getting some class' DisplayName while everything is still being initialized, so literals will do for now
         public override void SetStaticDefaults() =>

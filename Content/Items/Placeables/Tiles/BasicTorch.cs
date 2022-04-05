@@ -5,6 +5,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using ModTiles = SandboxMod.Content.Tiles;
+
 namespace SandboxMod.Content.Items.Placeables.Tiles
 {
     public class BasicTorch : ModItem
@@ -19,7 +21,7 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
             item.consumable     = true;
             item.flame          = true;
             item.noWet          = true;
-            item.createTile     = ModContent.TileType<Content.Tiles.BasicTorch>();
+            item.createTile     = ModContent.TileType<ModTiles.BasicTorch>();
             item.value          = Item.sellPrice(copper: 10);
             item.Size           = new Vector2(14, 16);
             item.maxStack       = 99;
@@ -40,10 +42,10 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
                 return;
 
             if (Main.rand.Next(player.itemAnimation > 0 ? 40 : 80) == 0)
-                Dust.NewDust(new Vector2(player.itemLocation.X + (16f * player.direction), player.itemLocation.Y - (14f * player.gravDir)), 4, 4, ModContent.DustType<BasicDust>());
+                Dust.NewDust(new Vector2(player.itemLocation.X + (player.direction * 16f), player.itemLocation.Y - (player.gravDir * 14f)), 4, 4, ModContent.DustType<BasicDust>());
 
-            Vector2 position = player.RotatedRelativePoint(new Vector2(player.itemLocation.X + (12f * player.direction) + player.velocity.X, player.itemLocation.Y - 14f + player.velocity.Y));
-            Lighting.AddLight(position, new Vector3(1f, 1f, 1f));
+            Vector2 position = player.RotatedRelativePoint(new Vector2(player.itemLocation.X + (player.direction * 12f) + player.velocity.X, player.itemLocation.Y - 14f + player.velocity.Y));
+            Lighting.AddLight(position, new Vector3(1, 1, 1));
         }
 
         public override void PostUpdate()
@@ -51,7 +53,7 @@ namespace SandboxMod.Content.Items.Placeables.Tiles
             if (item.wet)
                 return;
 
-            Lighting.AddLight(item.Center, new Vector3(1f, 1f, 1f));
+            Lighting.AddLight(item.Center, new Vector3(1, 1, 1));
         }
     }
 }

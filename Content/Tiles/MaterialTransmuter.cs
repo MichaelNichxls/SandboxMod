@@ -5,6 +5,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
+using ModTileItems = SandboxMod.Content.Items.Placeables.Tiles;
+
 namespace SandboxMod.Content.Tiles
 {
     public class MaterialTransmuter : ModTile
@@ -34,15 +36,13 @@ namespace SandboxMod.Content.Tiles
             TileObjectData.addTile(Type);
         }
 
-        // Impending helpers galore
         public override void NumDust(int i, int j, bool fail, ref int num) =>
             num = fail ? 1 : 3;
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) =>
             (r, g, b) = (116f / byte.MaxValue, 30f / byte.MaxValue, 146f / byte.MaxValue);
 
-        // Make const for 16, maybe
         public override void KillMultiTile(int i, int j, int frameX, int frameY) =>
-            Item.NewItem(new Vector2(i * 16, j * 16), new Vector2(48, 32), ModContent.ItemType<Items.Placeables.Tiles.MaterialTransmuter>());
+            Item.NewItem(new Vector2(i * 16, j * 16), new Vector2(48, 32), ModContent.ItemType<ModTileItems.MaterialTransmuter>());
     }
 }
