@@ -8,66 +8,63 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace SandboxMod
 {
     public partial class SandboxMod : Mod
     {
-        private List<ILoadable> _loaderCache;
+        private readonly List<ILoadable> _loaderCache = new List<ILoadable>();
 
         public static SandboxMod Instance { get; private set; }
+        public bool HasLoaded { get; private set; }
 
-        public SandboxMod()
-            => Instance = this;
+        public SandboxMod() => Instance = this;
+
+        internal TLoader GetLoader<TLoader>()
+            where TLoader : class, ILoadable
+        {
+            return _loaderCache.FirstOrDefault((loader) => loader is TLoader) as TLoader;
+        }
 
         public override void Load()
         {
-            _loaderCache = new List<ILoadable>();
+            if (HasLoaded)
+                return;
 
-            // Make into private method, maybe
-            foreach (Type type in Code.GetTypes())
-            {
-                if (type.GetInterfaces().Contains(typeof(ILoadable)) && !type.IsAbstract)
-                {
-                    var loader = (ILoadable)Activator.CreateInstance(type);
-                    _loaderCache.Add(loader);
-                }
-            }
-
+            _loaderCache.AddRange(Code
+                .GetTypes()
+                .Where(type => type.GetInterfaces().Contains(typeof(ILoadable)) && !type.IsAbstract)
+                .Select(type => (ILoadable)Activator.CreateInstance(type)));
             _loaderCache.Sort((x, y) => x.Priority > y.Priority ? 1 : -1);
+            _loaderCache.ForEach(loader => loader.Load());
 
-            foreach (ILoadable loader in _loaderCache)
-                loader.Load();
+            HasLoaded = true;
         }
-
-        // Do after you make the UILoader
-
-        //private IEnumerable<ILoadable> GetModLoaders(/* Mod parameter */)
-        //{
-        //    foreach (Type type in Code.GetTypes())
-        //    {
-        //        if (type.GetInterfaces().Contains(typeof(ILoadable)) && !type.IsAbstract)
-        //        {
-        //            // Inline?
-        //            var loader = (ILoadable)Activator.CreateInstance(type);
-        //            yield return loader;
-        //        }
-        //    }
-
-        //    //_loaderCache.Sort((x, y) => x.Priority > y.Priority ? 1 : -1);
-        //}
 
         public override void Unload()
         {
-            foreach (ILoadable loader in _loaderCache)
-                loader.Unload();
+            if (!HasLoaded)
+                return;
 
-            _loaderCache = null;
+            _loaderCache.ForEach(loader => loader.Unload());
+            _loaderCache.Clear();
 
             if (!Main.dedServ)
                 Instance = null;
+
+            HasLoaded = false;
         }
 
+        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+        {
+            var uiLoader = GetLoader<UILoader>();
+
+            for (int k = 0; k < uiLoader?.UserInterfaces.Count; k++)
+                uiLoader.InsertLayer(layers, uiLoader.UserInterfaces[k], uiLoader.UIStates[k]);
+        }
+
+        // Move
         public override void AddRecipes()
         {
             #region Pre-Hardmode Ores

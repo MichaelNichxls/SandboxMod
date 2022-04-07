@@ -26,7 +26,7 @@ namespace SandboxMod
                     break;
 
                 default:
-                    Logger.WarnFormat($"{Name}: Unknown message type: {messageType}");
+                    Logger.Warn($"{Name}: Unknown message type of type `{messageType}`");
                     break;
             }
         }
