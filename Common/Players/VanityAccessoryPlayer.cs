@@ -41,8 +41,24 @@ namespace SandboxMod.Common.Players
 
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
         {
+            // [System.Runtime.CompilerServices.CallerMemberName]
             if (HasAccessoryEquipped && BuffPredicate())
                 player.AddBuff(ModContent.GetInstance<TModItem>().item.buffType, 60);
+
+            // Useful:
+            //int maxAccessoryIndex = 5 + Main.LocalPlayer.extraAccessorySlots;
+            //for (int i = 13; i < 13 + maxAccessoryIndex; i++)
+            //{
+            //    if (Main.LocalPlayer.armor[i].type == item.type) return false;
+            //}
+
+            //// Only allow right clicking if there is a different ExclusiveAccessory equipped
+            //if (FindDifferentEquippedExclusiveAccessory().accessory != null)
+            //{
+            //    return true;
+            //}
+            //// If this hook returns true, the item is consumed (just like crates and boss bags)
+            //return base.CanRightClick();
         }
 
         public override void UpdateVanityAccessories()

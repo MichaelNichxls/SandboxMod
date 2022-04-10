@@ -24,7 +24,7 @@ namespace SandboxMod
         internal TLoader GetLoader<TLoader>()
             where TLoader : class, ILoadable
         {
-            return _loaderCache.FirstOrDefault((loader) => loader is TLoader) as TLoader;
+            return _loaderCache.FirstOrDefault(loader => loader is TLoader) as TLoader;
         }
 
         public override void Load()

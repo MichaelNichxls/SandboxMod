@@ -1,6 +1,7 @@
 ﻿using SandboxMod.Content.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.UI;
 
@@ -47,13 +48,13 @@ namespace SandboxMod.Common.Loaders
             if (state.GetInsertionIndex(layers) is var index && index != -1)
             {
                 layers.Insert(index, new LegacyGameInterfaceLayer(
-                    state.FullLayerName,
+                    state.InterfaceLayer.Name,
                     () =>
                     {
                         //if (state.IsVisible)
                         //    userInterface.Draw(Main.spriteBatch, new GameTime());
 
-                        if (state.IsVisible)
+                        if (state.IsVisible) // state.InterfaceLayer.Active // ?
                         {
                             userInterface.Update(Main._drawInterfaceGameTime);
                             state.Draw(Main.spriteBatch);
@@ -61,11 +62,15 @@ namespace SandboxMod.Common.Loaders
 
                         return true;
                     },
-                    state.ScaleType));
+                    state.InterfaceLayer.ScaleType));
             }
         }
 
-        //public static T GetUIState<T>() where T : SmartUIState => UIStates.FirstOrDefault(n => n is T) as T;
+        public TUIState GetUIState<TUIState>()
+            where TUIState : UISmartState
+        {
+            return UIStates.FirstOrDefault(state => state is TUIState) as TUIState;
+        }
 
         //public static void ReloadState<T>() where T : SmartUIState
         //{

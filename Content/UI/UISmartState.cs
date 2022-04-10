@@ -1,18 +1,24 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Terraria.UI;
 
 namespace SandboxMod.Content.UI
 {
     public abstract class UISmartState : UIState
     {
-        public abstract bool IsVisible { get; } // GameInterfaceLayer.Active
-        public virtual string LayerName => GetType().Name; // rename
-        public virtual InterfaceScaleType ScaleType => InterfaceScaleType.UI;
+        // ActivePredicate
 
-        public string FullLayerName => $"{SandboxMod.Instance.Name}: {LayerName}"; //
+        public GameInterfaceLayer InterfaceLayer { get; } // Remove, I guess
 
-        //public GameInterfaceLayer InterfaceLayer { get; set; } = new GameInterfaceLayer($"{SandboxMod.Instance.Name}: {GetType().Name}", InterfaceScaleType.UI);
+        public virtual bool IsVisible { get; set; } // Only getter?
 
-        public abstract int GetInsertionIndex(List<GameInterfaceLayer> layers);
+        public virtual string LayerName => $"{SandboxMod.Instance.Name}: {Regex.Replace(GetType().Name, "([A-Z])", " $1").Trim()}";
+
+        public UISmartState()
+            : base() =>
+            InterfaceLayer = new GameInterfaceLayer(LayerName, InterfaceScaleType.UI) { Active = false };
+
+        public virtual int GetInsertionIndex(List<GameInterfaceLayer> layers) =>
+            layers.FindIndex(layer => layer.Name == "Vanilla: Mouse Text");
     }
 }
